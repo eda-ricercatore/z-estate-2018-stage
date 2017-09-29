@@ -16,7 +16,13 @@ Design decisions:
 
 
 
+#	Organization of the Repository
 
+This repository is organized into the following directories (and subdirectories):
++ binaries
+	+ makefile
+		For build automation
+	+ [Temporary files, from building the *C++* software]
 
 
 
