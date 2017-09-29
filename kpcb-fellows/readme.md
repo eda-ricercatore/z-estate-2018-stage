@@ -5,11 +5,12 @@ This document summarizes the design decisions of implementing a fixed-size
 
 Design decisions:
 + *Python* and *Java* does not support implementations of fixed-sized linear
-	containers. 
+	containers (by default). 
 	Hence, I am not going to implement a fixed-size hash map using *Python*
 		or *Java*.
 + *GNU Octave* has poor support for object-oriented programming.
-+ *C++* and *Java* support implementations of fixed-sized linear containers.
++ *C++* and *Java* support implementations of fixed-sized linear containers by
+	default.
 + Select *C++* for memory-efficient implementation of the hash map, so that
 	only references are passed/copied, rather than passing/copying the objects.
 
@@ -19,14 +20,31 @@ Design decisions:
 #	Organization of the Repository
 
 This repository is organized into the following directories (and subdirectories):
-+ binaries
-	+ makefile
-		For build automation
++ binaries.
+	+ makefile.
+		For build automation.
+	+ doxygen.config.
+		For customizing *Doxygen*-generated documentation.
 	+ [Temporary files, from building the *C++* software]
-
-
-
-
++ src (source code).
+	- elements.
+		Class definition and implementation for a simple object, used to test
+			the implementation of the fixed-size hash map.
+	- hash_map.
+		Definition and implementation for a fixed-size hash map.
+	- test.
+		Code used for unit testing, module testing, and integration testing.
+	  	Also, the software testing process involves grey-box testing (for
+	  		functional requirements/specifications).
+	  	The software testing process is automated and executed before
+	  		each software commit. 
++ problem.md.
+	Description of the problem, "implementation of a fixed-size array."
++ readme.md.
+	Basic documentation for the project.
++ references.
+	PDF copy of the default application form for the  Kleiner Perkins Caufield &
+		Byers Engineering Fellows program.
 
 
 
