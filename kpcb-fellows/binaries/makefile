@@ -1,7 +1,8 @@
 #	Makefile for build automation.
 
-#	This is written by Zhiyang Ong to run automated regression tests
-#		automatically.
+#	This is written by Zhiyang Ong for build automation of his
+#		implementation of a fixed-size hash map and to run automated
+#		regression tests automatically.
 
 #	================================================================
 
@@ -18,6 +19,93 @@
 #	Email address: echo "cukj -wb- 23wU4X5M589 TROJANS cqkH wiuz2y 0f Mw Stanford" | awk '{ sub("23wU4X5M589","F.d_c_b. ") sub("Stanford","d0mA1n"); print $5, $2, $8; for (i=1; i<=1; i++) print "6\b"; print $9, $7, $6 }' | sed y/kqcbuHwM62z/gnotrzadqmC/ | tr 'q' ' ' | tr -d [:cntrl:] | tr -d 'ir' | tr y "\n"	Che cosa significa?
 
 #	================================================================
+
+# IMPORTANT NOTE:
+# Makefile is written for Mac OS X 10.12.6, running on a Intel Core i7 processor.
+# Use "clang" for C++ compilation, instead of g++/GCC. 
+# Apple LLVM version 9.0.0 (clang-900.0.37).
+
+# Definition of macro flags...
+GPLUSPLUS=			g++
+COMPILE=			-c
+LINK=				-o
+EXECUTABLE=			./test-fixed-size-hash-map
+OBJFILES=			*.o
+SOURCE=				*.cpp
+HEADER=				*.h
+TILDE=				*~
+PREVDIR=			../
+HOME=				../
+SLASH=				/
+# Macros that are useful to help me debug
+COMPILATIONSTEPS=	-v
+WARNINGS=			-Wall
+EFFCPP=				-Weffc++
+HARDERRORS=			-Werror
+PEDANTIC=			-pedantic
+PEDANTICERRORS=		-pedantic-errors
+EXTRAWARNINGS=		-Wextra
+COMPATIBILITY=		-Wc++-compat
+DEBUGGINGINFO=		-g -dA
+DEBUGDUMP=			-dD
+COREDUMP=			-dH
+MEMORYUSAGE=		-dm
+MEMORYTIME=			-fdump-tree-all
+CPPTIME=			-time
+SIMPLEOPT=			-O1
+MOREOPT=			-O2
+EVENMOREOPT=		-O3
+MAXPERFORMANCE=		-fast
+SIZEOPT=			-Os
+INCLUDE=			-I
+DYNDIRINC=			-L
+DYNINCLUDE=			-l
+#	Used when testing and debugging.
+COVERAGE=			-coverage
+#	Normal output message/text file
+NORMALTXT=			normal_output.txt
+#	Error output message/text file
+ERRORTXT=			error_output.txt
+#	Used when testing and debugging.
+COVERAGE=			-coverage
+CPP11=				-std=c++11
+CPP14=				-std=c++14
+CPP17=				-std=c++17
+
+
+ Basic software architecture description at the module level.
+# Paths for different modules/packages of the software.
+#
+# Note that the paths of the modules are relative.
+# The modules are located in the "src" directory.
+# This is because I am building and testing the software in a
+#	separate directory, so that I can isolate the object files
+#	and theexecutable from the source code.
+# Such isolation would make it easier to clean up the directory where
+#	the software resides, so that it is easier to maintain.
+#
+# Module that defines the key components of a hash map.
+HASHMAPPATH=		../src/hash_map/
+# Module containing the definition and implementation of a simple
+#	object .
+ELEMPATH=		../src/elements/
+# Module containing test cases/suites for the software.
+# It does not contain Exception classes, which are placed
+#	in the utilities module.
+TESTPATH=		../src/test/
+# Submodules of the Test module
+TPGRAPH=		graph_t/
+TPDIRGRAPH=		directed/
+TPUNDIRGRAPH=	undirected/
+TPMAIN=			main_t/
+TPUTILITIES=	utilities_t/
+TPPARSERS=		parsers_t/
+
+
+
+
+
+
 
 #	Make targets
 
