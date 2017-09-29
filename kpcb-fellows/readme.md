@@ -1,5 +1,11 @@
 #	Introduction
 
+## Problem Description
+
+See [Problem Description](https://github.com/eda-ricercatore/z-estate-2018-stage/blob/master/kpcb-fellows/problem.md).
+
+## Design Decisions 
+
 This document summarizes the design decisions of implementing a fixed-size
 	hash map.
 
