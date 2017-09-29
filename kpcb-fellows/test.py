@@ -52,3 +52,24 @@ __date__ = 'September 29, 2017'
 
 ###############################################################
 
+###############################################################
+# Main method for the program.
+
+#	If this is executed as a Python script,
+if __name__ == "__main__":
+	# --------------------------------------------------------
+	#	= Start of Preprocessing.
+	hash_map.preprocessing()
+	# --------------------------------------------------------
+	#	= End of Preprocessing.
+
+
+
+
+
+
+
+
+
+
+ww

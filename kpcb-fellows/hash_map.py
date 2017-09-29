@@ -50,4 +50,23 @@ __date__ = 'September 29, 2017'
 
 ###############################################################
 
+#	Module implementing a fixed-size hash map.
+class hash_map:
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
