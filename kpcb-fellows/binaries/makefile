@@ -73,7 +73,8 @@ CPP14=				-std=c++14
 CPP17=				-std=c++17
 
 
- Basic software architecture description at the module level.
+
+# Basic software architecture description at the module level.
 # Paths for different modules/packages of the software.
 #
 # Note that the paths of the modules are relative.
@@ -94,27 +95,88 @@ ELEMPATH=		../src/elements/
 #	in the utilities module.
 TESTPATH=		../src/test/
 # Submodules of the Test module
-TPGRAPH=		graph_t/
-TPDIRGRAPH=		directed/
-TPUNDIRGRAPH=	undirected/
-TPMAIN=			main_t/
+TPHASHMAP=		hash_map_t/
 TPUTILITIES=	utilities_t/
-TPPARSERS=		parsers_t/
+TPELEM=			elements_t/
+#
+# Module that provides classes to support the development and
+#	debugging of the software, including Exception classes.
+UTILITYPATH=	../src/utilities/
+#
+# Module containing scripts used for file processing/management
+#	and statistical analysis
+SCRIPTS=		../scripts/
+#
+# Module containing the binaries, object files, and build automation
+#	tools.
+BINARIES=		../binaries/
+#
+# Module containing the documention of the software.
+NOTESPATH=		../notes/
+DOCSPATH=		../docs/
+# Module containing "test" code from the "sandbox".
+SANDBOXPATH=	../src/sandbox/
+
+
+
+# UNIX commands/utilities that are used
+TIME=			time -p
+DATE=			date
 
 
 
 
 
 
+# =============================================================
 
 #	Make targets
 
-all:
-	@echo ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	@echo === Run automated regression testing.
-	./hash_map.py
-	@echo === Remove temp files.
-	rm *.pyc
+########################################################################
+# TEST THE SOFTWARE: UNIT, MODULE, INTEGRATION, AND REGRESSION TESTING
+########################################################################
+# Build and test the latest software build. 
+test:
+	@echo + + + + + + + + + + + + + + + + + + + + + + + + + + +
+	@echo + + + + + + + + + + + + + + + + + + + + + + + + + + +
+	@echo + + + + + + + + + + + + + + + + + + + + + + + + + + +
+	$(DATE)
+	$(TBBSETUP)
+	@echo === Compiling C++ source code in the...
+	@echo === Utilities Directory
+	$(GPLUSPLUS)	$(CPP11)	$(COMPILE)	$(UTILITYPATH)$(SOURCE)
+	@echo === Hash Map Directory
+	@echo === Test/Utilities Directory
+	$(GPLUSPLUS)	$(CPP11)	$(COMPILE)	$(TESTPATH)$(TPUTILITIES)$(SOURCE)
+	@echo === Test Directory
+	$(GPLUSPLUS)	$(CPP11)	$(COMPILE)	$(TESTPATH)$(SOURCE)
+	@echo === Link the C++ object files...
+	$(GPLUSPLUS)	$(CPP11)	$(LINK)		$(EXECUTABLE)	$(OBJFILES)
+	@echo === Executing the software...
+	$(TIME) $(EXECUTABLE) $(BENCHMARKS)$(STACK1)	$(OPRESULTS)
+	@echo
+	@echo
+	@echo
+	@echo
+	@echo "The code is rather buggy; use is at own risk."
+	@echo "-- Donald Chai"
+	@echo
+	@echo "Beware of bugs in the above code."
+	@echo "I have only proved it correct, not tried it."
+	@echo "-- Donald E. Knuth"
+	@echo
+	@echo
+	@echo
+	@echo
+	#more $(NORMALTXT)
+	#more $(ERRORTXT)
+
+
+
+
+
+
+
 
 
 

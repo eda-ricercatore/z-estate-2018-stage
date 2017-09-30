@@ -1,12 +1,44 @@
 /**
- * lamiera-per-caldaie: A library of common data structures and
- *	algorithms, including common data structures and algorithms for
- *	electronic design automation (such as AND-Inverter Graphs and
- *	binary decision diagrams).
+ * @author Zhiyang Ong
+ *
+ * Test suite for the hash map.
+ *
+ * Main function for test suite:
+ * This test suite will set up the instance variables necessary to
+ * 	test different functions of the hash map.
+ * Subsequently, it will test the various modules, and classes and
+ *	their functions.
+ * Next, it will clear up the virtual memory used by the instance
+ *	variables.
+ *
+ * For each class, the testing sequence would be:
+ * # constructors
+ * # accessor functions
+ * # mutator functions
+ * # destructor
+ *
+ * The current testing sequence of classes is:
+ * # utilities
+ *		@ violated_assertion
+ *		@ violated_postcondition
+ *		@ violated_precondition
+ *		@ printer
+ * ...
+ * # node
+ *
+ *
+ * #### IMPORTANT NOTES:
+ * To be completed...
+ *
+ *
+ *
+ *
+ *
+ *
  *
  * The MIT License (MIT)
  *
- * Copyright	(C)	<2014>	<Zhiyang Ong>
+ * Copyright	(C)	<2017>	<Zhiyang Ong>
  *
  * Permission is hereby granted, free of charge, to any person
  *	obtaining a copy of this software and associated documentation
@@ -29,36 +61,7 @@
  *	DEALINGS IN THE SOFTWARE.
  * 
  * 
- *
- * @author Zhiyang Ong
- *
- * Test suite for lamiera-per-caldaie.
- *
- * Main function for test suite:
- * This test suite will set up the instance variables necessary to test
- * different functions of lamiera-per-caldaie.
- * Subsequently, it will test the various modules, and classes and
- * their functions of Tiramisu.
- * Next, it will clear up the virtual memory used by the instance variables.
- *
- * For each class, the testing sequence would be:
- * # constructors
- * # accessor functions
- * # mutator functions
- * # destructor
- *
- * The current testing sequence of classes is:
- * # utilities
- *		@ violated_assertion
- *		@ violated_postcondition
- *		@ violated_precondition
- *		@ printer
- * ...
- * # node
- *
- *
- * #### IMPORTANT NOTES:
- * To be completed...
+ * Email address: echo "cukj -wb- 23wU4X5M589 TROJANS cqkH wiuz2y 0f Mw Stanford" | awk '{ sub("23wU4X5M589","F.d_c_b. ") sub("Stanford","d0mA1n"); print $5, $2, $8; for (i=1; i<=1; i++) print "6\b"; print $9, $7, $6 }' | sed y/kqcbuHwM62z/gnotrzadqmC/ | tr 'q' ' ' | tr -d [:cntrl:] | tr -d 'ir' | tr y "\n"	Che cosa significa?
  */
 
 // Import Header files from the C++ STL
@@ -94,7 +97,7 @@
 //#include "graph_t/graph_mt.hpp"
 
 // Import "test" classes from the "sandbox". Test works when its code are not used.
-#include "../sandbox/classes/simple_template.hpp"
+//#include "../sandbox/classes/simple_template.hpp"
 
 
 
@@ -122,52 +125,7 @@ int main(int argc, char *argv[]) {
 	// Switch off debugging mode for testing the Utilities module.
 	printer::set_debugging_mode(false);
 	
-	
-	
-	
-	/*
-	 * If the first two input arguments for this program is null,
-	 * request for the user to rerun the program and exit.
-	 */
-/*
-	if((argv[1] == NULL) || (argv[2] == NULL)) {
-		cout << "To run this program, lamiera-per-caldaie (test-boilerplate-code)," << endl;
-		cout << "do the following:" << endl;
-		cout << "./test-boilerplate-code [benchmark] [output-filename]" << endl;
-		cout << endl;
-		cout << "E.g., ./test-boilerplate-code stack stack-op.txt" << endl;
-		return 0;
-	}
-
-	cout << "Benchmark is located at:" << endl;
-	cout << argv[1] << endl;
-	cout << "Output filename to store test results is:" << endl;
-	cout << argv[2] << endl;
-*/
-
-
-/*
-	// Check if the benchmark is valid.
-	if(!file_io::is_bmk_loc_valid(argv[1])) {
-		cerr<<argv[1]<<" is NOT a valid benchmark."<< endl;
-		throw new violated_assertion("Invalid benchmark!!!");
-	}else{
-		// Set the benchmark.
-		file_io::set_bmk_loc(argv[1]);
-	}
-
-
-	
-	// Check if the benchmark is valid.
-	if(!file_io::is_bmk_valid(argv[2])) {
-		cerr<<argv[2]<<" is NOT a valid output filename."<< endl;
-		throw new violated_assertion("Output filename is invalid!!!");
-	}else{
-		// Set the benchmark.
-		file_io::set_name_of_bmk(argv[2]);
-	}
-*/	
-
+		
 	// =======================================================================
 	// =======================================================================
 	// =======================================================================
@@ -227,10 +185,6 @@ int main(int argc, char *argv[]) {
 	printer::debug_std_op_ln("");
 	printer::debug_std_op_ln("");
 	printer::debug_std_op_ln("");
-	printer::debug_std_op_ln("===============================================================");
-	printer::debug_std_op_ln("		- Call the GLPK solver.");
-	system("glpsol --primal -m glpk/hw4_q1.mod");
-	printer::debug_std_op_ln("		Arrivederci!");
 	
 	// End of main function...
 	return 0;

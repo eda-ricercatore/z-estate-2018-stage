@@ -77,10 +77,7 @@ void utilities_mt::test_utilities() {
 	violated_postcondition_ut::test_violated_postcondition();
 	// Test the class printer.
 	printer_ut::test_printer();
-	// Test the class file_io.
-	file_io_ut::test_file_io();
-	// Test the class conversion_alphanumeric.
-	conversion_alphanumeric_ut::test_numbers_to_strings();
+	
 
 
 /*
