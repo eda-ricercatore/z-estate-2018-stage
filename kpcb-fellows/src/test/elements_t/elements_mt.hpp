@@ -1,17 +1,17 @@
 /**
- * Test/Utilities_t package:
- * Submodule of Test package to test classes in the Utilities package.
+ * Test/Elements_t package:
+ * Submodule of Test package to test classes in the Elements package.
  *
- * violated_postcondition_ut class:
- * Class that tests the violated_postcondition class.
+ * elements_mt class:
+ * Class that tests the elements package.
  *
  * 
  *
  *
- * Copyright	(C)	<2010-2011>	<Zhiyang Ong>
+ * Copyright	(C)	<2017>	<Zhiyang Ong>
  * @author Zhiyang Ong
  * @version 1.0.0
- * @since January 1, 2011
+ * @since September 29, 2017
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,31 +31,42 @@
  */
 
 // Import Header files from the other modules of lamiera-per-caldaie.
-#include "violated_postcondition_ut.hpp"
+// Elements module
+#include "../../elements/my_element.hpp"
+#include "my_element_ut.hpp"
+// Utilities module
 #include "../../utilities/printer.hpp"
+#include "../../utilities/violated_assertion.hpp"
+#include "../../utilities/violated_precondition.hpp"
+#include "../../utilities/violated_postcondition.hpp"
+
+
+// Import "test" classes from the "sandbox".
+//#include "../../sandbox/classes/simple_template.hpp"
 
 // Import appropriate header files from the C++ STL
 #include <iostream>
 #include <string>
+
+#ifndef __ELEMENTS_MT_H
+#define __ELEMENTS_MT_H
 using namespace std;
 
-violated_postcondition_ut::violated_postcondition_ut() {
-	printer::debug_std_err("==tu	Don't instantiate the tester for violated_postcondition");
-	printer::debug_std_err("");
-}
+// ==================================================================
 
+class elements_mt {
+//	private:
+//		string ex_msg;
 
-void violated_postcondition_ut::test_violated_postcondition() {
-	printer::set_debugging_mode(true);
-	printer::debug_std_op_ln("");
-	printer::debug_std_op_ln("");
-	try{
-		printer::num_test_cases_eval();
-		printer::debug_std_op_ln("==tu	Testing: violated_postcondition...");
-		throw new violated_postcondition("==tu	>>	Tested: violated_postcondition.");
-	}catch(violated_postcondition *err) {
-		printer::debug_std_op_ln("==tu	==>	violated_postcondition works.");
-		printer::num_passed_test_cases_eval();
-	}
-	printer::set_debugging_mode(false);
-}
+	// --------------------------------------------------------------
+	
+	public:
+		// Default constructor
+		elements_mt();
+
+		// ----------------------------------------------------------
+
+		// Function to test different classes in the Utilities package.
+		static void test_my_element();
+};
+#endif

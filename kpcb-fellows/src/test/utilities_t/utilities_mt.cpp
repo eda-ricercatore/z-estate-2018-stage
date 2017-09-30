@@ -25,6 +25,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * 
+ * Email address: echo "cukj -wb- 23wU4X5M589 TROJANS cqkH wiuz2y 0f Mw Stanford" | awk '{ sub("23wU4X5M589","F.d_c_b. ") sub("Stanford","d0mA1n"); print $5, $2, $8; for (i=1; i<=1; i++) print "6\b"; print $9, $7, $6 }' | sed y/kqcbuHwM62z/gnotrzadqmC/ | tr 'q' ' ' | tr -d [:cntrl:] | tr -d 'ir' | tr y "\n"	Che cosa significa?
  */
 
 
@@ -78,17 +81,4 @@ void utilities_mt::test_utilities() {
 	// Test the class printer.
 	printer_ut::test_printer();
 	
-
-
-/*
-	// Test if I can use "simple_template". 
-	cout << "	###" << simple_template<int>::is_non_negative(493) << "===" << endl;
-	simple_template<int> *a_ptr;
-	cout << "	###" << a_ptr->square_given_number(5) << "===" << endl;
-	// 0.25^2 = 0.0625
-	simple_template<long double> *b_ptr;
-	cout << "	###" << b_ptr->square_given_number(-0.25) << "===" << endl;
-	// 16.25^2 = 164.0625
-	cout << "	###" << b_ptr->square_given_number(-16.25) << "===" << endl;
-*/
 }
