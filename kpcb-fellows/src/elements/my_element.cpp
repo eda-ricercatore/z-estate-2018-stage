@@ -49,7 +49,7 @@ using namespace std;
 // Default constructor
 my_element::my_element() {
 	name = "Missing Name";
-	index_number = ULLONG_MAX;
+	index_number = UINT_MAX;
 }
 
 // Standard constructor.

@@ -144,14 +144,16 @@ test:
 	$(TBBSETUP)
 	@echo === Compiling C++ source code in the...
 	@echo === Utilities Directory
-	$(GPLUSPLUS)	$(CPP11)	$(COMPILE)	$(UTILITYPATH)$(SOURCE)
+	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(UTILITYPATH)$(SOURCE)
+	@echo === Elements Directory
+	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(ELEMPATH)$(SOURCE)
 	@echo === Hash Map Directory
 	@echo === Test/Utilities Directory
-	$(GPLUSPLUS)	$(CPP11)	$(COMPILE)	$(TESTPATH)$(TPUTILITIES)$(SOURCE)
+	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(TPUTILITIES)$(SOURCE)
 	@echo === Test Directory
-	$(GPLUSPLUS)	$(CPP11)	$(COMPILE)	$(TESTPATH)$(SOURCE)
+	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(SOURCE)
 	@echo === Link the C++ object files...
-	$(GPLUSPLUS)	$(CPP11)	$(LINK)		$(EXECUTABLE)	$(OBJFILES)
+	$(GPLUSPLUS)	$(CPP14)	$(LINK)		$(EXECUTABLE)	$(OBJFILES)
 	@echo === Executing the software...
 	$(TIME) $(EXECUTABLE) $(BENCHMARKS)$(STACK1)	$(OPRESULTS)
 	@echo

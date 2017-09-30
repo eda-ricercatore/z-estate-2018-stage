@@ -36,8 +36,9 @@
 
 
 // Import packages from the software
-#include "../src/utilities/violated_assertion.hpp"
-#include "../src/utilities/violated_precondition.hpp"
+//#include "../src/utilities/violated_assertion.hpp"
+#include "../utilities/violated_assertion.hpp"
+#include "../utilities/violated_precondition.hpp"
 
 
 // Import packages from the C++ STL
