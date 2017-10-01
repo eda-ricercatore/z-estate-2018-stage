@@ -122,7 +122,7 @@ SANDBOXPATH=	../src/sandbox/
 # UNIX commands/utilities that are used
 TIME=			time -p
 DATE=			date
-
+REMOVE=			rm -f
 
 
 
@@ -178,8 +178,13 @@ test:
 
 
 
-
-
+########################################################################
+# REMOVE TEMPORARY FILES.
+########################################################################
+# Remove temporary files.
+clean:
+	$(REMOVE)	$(OBJFILES)
+	$(REMOVE)	$(EXECUTABLE)
 
 
 

@@ -32,8 +32,12 @@
 
 // Import Header files from the other modules of lamiera-per-caldaie.
 // Elements module
-#include "../../elements/my_element.hpp"
-#include "my_element_ut.hpp"
+//#include "../../elements/my_element.hpp"
+//#include "../elements/my_element.hpp"
+
+//#include "my_element_ut.hpp"
+//#include "elements_t/my_element_ut.hpp"
+#include "../elements_t/my_element_ut.hpp"
 // Utilities module
 #include "../../utilities/printer.hpp"
 #include "../../utilities/violated_assertion.hpp"
@@ -67,6 +71,6 @@ class elements_mt {
 		// ----------------------------------------------------------
 
 		// Function to test different classes in the Utilities package.
-		static void test_my_element();
+		static void test_my_element_mt();
 };
 #endif

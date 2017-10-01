@@ -40,8 +40,8 @@
  */
 
 // Import Header files from the other modules of the software.
-#include "../../../elements/my_element.hpp"
-
+//#include "../../../elements/my_element.hpp"
+#include "../../elements/my_element.hpp"
 
 // Import appropriate header files from the C++ STL
 
@@ -67,21 +67,15 @@ class my_element_ut {
 
 		/**
 		 * Function to test the constructor and functions of
-		 *	directed_graph_node.
+		 *	my_element.
 		 */
-		static void test_my_element();
+		static void test_my_element_ut();
 
 		/**
 		 * Function to test the standard constructor of the class
-		 *	directed_graph_node.
+		 *	my_element.
 		 */
-		static void test_my_element_constructor();
-
-		/**
-		 * Function to test the accessor functions regarding the
-		 *	name and index number of a my_element object.
-		 */
-		static void test_my_element_accessor_functions();
+		static void test_my_element_constructor_and_accessor_functions();
 
 		/**
 		 * Function to test the mutator functions regarding the

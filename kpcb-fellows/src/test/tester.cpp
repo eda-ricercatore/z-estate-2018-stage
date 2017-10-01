@@ -80,6 +80,9 @@
 // Import Header files from the other modules of lamiera-per-caldaie.
 // Utilities module
 #include "utilities_t/utilities_mt.hpp"
+#include "elements_t/elements_mt.hpp"
+//#include "../../elements_t/elements_mt.hpp"
+//#include "../elements_t/elements_mt.hpp"
 /*
 #include "../utilities/printer.hpp"
 #include "utilities_t/printer_ut.hpp"
@@ -147,17 +150,13 @@ int main(int argc, char *argv[]) {
 	printer::debug_std_op_ln("");
 	
 	
-	// Testing the graph package
-//	graph_mt::test_graph();
+	// Testing the elements package
+	elements_mt::test_my_element_mt();
+	printer::debug_std_op_ln("");
+	printer::debug_std_op_ln("");
+	
 
 
-
-	
-	//file_io::open_io_streams();
-	
-	
-	// Dummy variable to temporarily store numbers.
-	int dummy = INT_MIN;
 	
 	// Tally up the software testing score.
 	printer::debug_std_op_ln("--------------------------------------------------------");
