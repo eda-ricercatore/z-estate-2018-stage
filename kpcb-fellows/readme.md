@@ -47,7 +47,9 @@ This repository is organized into the following directories (and subdirectories)
 	  	Also, the software testing process involves grey-box testing (for
 	  		functional requirements/specifications).
 	  	The software testing process is automated and executed before
-	  		each software commit. 
+	  		each software commit.
+	 - utilities.
+	 	
 + problem.md.
 	Description of the problem, "implementation of a fixed-size array."
 + readme.md.
