@@ -163,14 +163,15 @@ int main(int argc, char *argv[]) {
 	printer::debug_std_op_ln("		Summary of Automated Regression Testing");
 	printer::debug_std_op_ln("");
 	printer::debug_std_op_ln("");
-	printer::debug_std_op("Number of test cases: ");
+	printer::debug_std_op("Number of test cases: 		");
 	printer::debug_std_op_ln(to_string(printer::get_num_test_cases()));
-	printer::debug_std_op("Number of passed test cases: ");
+	printer::debug_std_op("Number of passed test cases:	");
 	printer::debug_std_op_ln(to_string(printer::get_num_passed_test_cases()));
 	double results = (double) printer::get_num_passed_test_cases() / printer::get_num_test_cases();
 	results = results * 100;
 	printer::debug_std_op("	Success Rate: ");
-	printer::debug_std_op_ln(to_string(results));
+	//printer::debug_std_op_ln(to_string(results));
+	printer::debug_std_op(to_string(results));
 	printer::debug_std_op_ln("%");
 	printer::debug_std_op_ln("");
 	printer::debug_std_op_ln("");

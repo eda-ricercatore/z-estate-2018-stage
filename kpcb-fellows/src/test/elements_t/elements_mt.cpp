@@ -57,14 +57,14 @@ elements_mt::elements_mt() {
  * @param None
  * @return Nothing
  */
-void utilities_mt::test_my_element_mt() {
+void elements_mt::test_my_element_mt() {
 	// Testing the elements package
 	printer::set_debugging_mode(true);
 	printer::debug_std_op_ln("--------------------------------------------------------");
 	printer::debug_std_op_ln("		TESTING the Elements package");
 	printer::debug_std_op_ln("");
 	printer::debug_std_op_ln("");
-	printer::set_debugging_mode(false);
+//	printer::set_debugging_mode(false);
 	// Test the class my_element.
 	my_element_ut::test_my_element_ut();
 }

@@ -148,8 +148,10 @@ test:
 	@echo === Elements Directory
 	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(ELEMPATH)$(SOURCE)
 	@echo === Hash Map Directory
-	@echo === Test/Utilities Directory
+	@echo === Test/Utilities_t Directory
 	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(TPUTILITIES)$(SOURCE)
+	@echo === Test/Elements_t Directory
+	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(TPELEM)$(SOURCE)
 	@echo === Test Directory
 	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(SOURCE)
 	@echo === Link the C++ object files...

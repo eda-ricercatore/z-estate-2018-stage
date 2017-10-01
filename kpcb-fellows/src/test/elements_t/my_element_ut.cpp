@@ -68,7 +68,7 @@ my_element_ut::my_element_ut() {
 void my_element_ut::test_my_element_ut() {
 	cout << "==tu	Testing: my_element..." << endl;
 	// Test the constructor.
-	test_my_element_constructor();
+	test_my_element_constructor_and_accessor_functions();
 	// Test mutator functions of the my_element class.
 	test_my_element_mutator_functions();
 	
@@ -90,8 +90,10 @@ void my_element_ut::test_my_element_constructor_and_accessor_functions() {
 	if((UINT_MAX == my_elem->get_index_number()) &&
 		(0 == (my_elem->get_name()).compare("Missing Name"))) {
 		cout << "	Yes." << endl;
+		printer::num_passed_test_cases_eval();
 		cout << "==tu	>>	Default constructor's name = 'Missing Name'?";
 		cout << "	Yes." << endl;
+		printer::num_test_cases_eval();
 		printer::num_passed_test_cases_eval();
 	}else{
 		cout << "	NO!!!" << endl;
@@ -102,11 +104,13 @@ void my_element_ut::test_my_element_constructor_and_accessor_functions() {
 	my_elem = new my_element(temp_name, temp_index_number);
 	cout << "==tu	>>	Standard constructor's index number = 12345001?";
 	printer::num_test_cases_eval();
-	if((temp_index_number == my_elem->get_node_ID()) &&
+	if((temp_index_number == my_elem->get_index_number()) &&
 		(0 == (my_elem->get_name()).compare(temp_name))) {
 		cout << "	Yes." << endl;
+		printer::num_passed_test_cases_eval();
 		cout << "==tu	>>	Standard constructor's name = 'Temporary name'?";
 		cout << "	Yes." << endl;
+		printer::num_test_cases_eval();
 		printer::num_passed_test_cases_eval();
 	}else{
 		cout << "	NO!!!" << endl;
@@ -131,14 +135,14 @@ void my_element_ut::test_my_element_mutator_functions() {
 	printer::num_test_cases_eval();
 	
 	if(temp_index_number == my_elem->get_index_number()) {
-		cout << "			Yes." << endl;
+		cout << "		Yes." << endl;
 		printer::num_passed_test_cases_eval();
 	}else{
 		cout << "			NO!!!" << endl;
 	}
 	
 	// Modify its name to "Ciao Mondo".
-	int temp_name = "Ciao Mondo";
+	string temp_name = "Ciao Mondo";
 	my_elem->set_name(temp_name);
 	cout << "==tu	>>	Is modified name = 23460011?";
 	printer::num_test_cases_eval();

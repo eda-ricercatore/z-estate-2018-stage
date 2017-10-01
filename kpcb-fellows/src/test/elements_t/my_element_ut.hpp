@@ -40,8 +40,14 @@
  */
 
 // Import Header files from the other modules of the software.
+// Elements module
 //#include "../../../elements/my_element.hpp"
 #include "../../elements/my_element.hpp"
+// Utilities module
+#include "../../utilities/printer.hpp"
+#include "../../utilities/violated_assertion.hpp"
+#include "../../utilities/violated_precondition.hpp"
+#include "../../utilities/violated_postcondition.hpp"
 
 // Import appropriate header files from the C++ STL
 
