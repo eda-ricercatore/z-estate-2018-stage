@@ -1,14 +1,15 @@
 /**
- * Elements package:
- * Module to contain class definitions and implementations of objects
- *	that would be stored in the hash map.
+ * Hash_map package:
+ * Module to contain class definitions and implementations of the
+ *	hash map data structure.
  *
- * my_element class:
- * Class to contain a name (i.e., a string) and an index number
- *	(i.e., a number/integer).
- * Accessor and mutator functions are provided for accessing and
- *	modifying these fields (i.e., the name and the index number).
- *
+ * hash_map class:
+ * Class to imeplement a fixed-size hash map container (i.e., data
+ *	structure).
+ * Accessor and mutator functions are provided for searching, adding,
+ *	and removal of (key, value) pairs.
+ * It supports miscellaneous tasks/functions, such as determining
+ *	the load factor.
  *
  *
  *
@@ -34,12 +35,12 @@
  * Email address: echo "cukj -wb- 23wU4X5M589 TROJANS cqkH wiuz2y 0f Mw Stanford" | awk '{ sub("23wU4X5M589","F.d_c_b. ") sub("Stanford","d0mA1n"); print $5, $2, $8; for (i=1; i<=1; i++) print "6\b"; print $9, $7, $6 }' | sed y/kqcbuHwM62z/gnotrzadqmC/ | tr 'q' ' ' | tr -d [:cntrl:] | tr -d 'ir' | tr y "\n"	Che cosa significa?
  */
 
-
 // Import packages from the software
-//#include "../src/utilities/violated_assertion.hpp"
+// Utilities class.
 #include "../utilities/violated_assertion.hpp"
 #include "../utilities/violated_precondition.hpp"
-
+#include "../utilities/violated_postcondition.hpp"
+#include "../utilities/printer.hpp"
 
 // Import packages from the C++ STL
 #include <iostream>
@@ -47,20 +48,23 @@
 #include <cstring>
 #include <limits.h>			// For std::UINT_MAX
 
-#ifndef __MY_ELEMENT_H
-#define __MY_ELEMENT_H
+#ifndef __HASH_MAP_H
+#define __HASH_MAP_H
 using namespace std;
 
 // =========================================================
 
-// Class definition of the my_element class
-class my_element {
+// Class definition of the hash_map class
+class hash_map {
 	// Publicly accessible data members, constructors, and functions
 	public:
 		// Default constructor.
-		my_element();
-		// Standard constructor.
-		my_element(string a_name, int an_index_number);
+		hash_map();
+		/**
+		 * Standard constructor, with its maximum capacity has an
+		 *	input parameter.
+		 */
+		hash_map(unsigned long long int an_index_number);
 
 		// -----------------------------------------------------
 		
@@ -91,8 +95,8 @@ class my_element {
 	private:
 		// Name of the my_element object.
 		string name;
-		// Index Number of the my_element object.
-		int index_number;
+		// Maximum capacity of .
+		unsigned long long int maximum_capacity;
 
 		// -------------------------------------------------------
 		
@@ -100,3 +104,18 @@ class my_element {
 
 };
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
