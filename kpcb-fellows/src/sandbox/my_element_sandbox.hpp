@@ -37,9 +37,10 @@
 
 // Import packages from the software
 //#include "../src/utilities/violated_assertion.hpp"
+/*
 #include "../utilities/violated_assertion.hpp"
 #include "../utilities/violated_precondition.hpp"
-
+*/
 
 // Import packages from the C++ STL
 #include <iostream>
@@ -61,13 +62,13 @@ using namespace std;
 // =========================================================
 
 // Class definition of the my_element class
-class my_element {
+class my_element_sandbox {
 	// Publicly accessible data members, constructors, and functions
 	public:
 		// Default constructor.
-		my_element();
+		my_element_sandbox();
 		// Standard constructor.
-		my_element(string a_name, int an_index_number);
+		my_element_sandbox(string a_name, int an_index_number);
 
 		// -----------------------------------------------------
 		
@@ -90,6 +91,17 @@ class my_element {
 		
 		// Function to update the index number.
 		void set_index_number(int new_index_number);
+		
+		// -----------------------------------------------------
+		
+		// Hash functions.
+		
+		// Function to hash a string.
+		string get_string_hash(string str);
+		
+		// Function to hash this my_element_sandbox object.
+		string get_mes_hash();
+		
 	
 	// =========================================================
 	

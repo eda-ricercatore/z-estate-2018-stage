@@ -23,7 +23,11 @@ Design decisions:
 	default.
 + Select *C++* for memory-efficient implementation of the hash map, so that
 	only references are passed/copied, rather than passing/copying the objects.
-
++ Implementation of hash map data structure.
+	- Data type for the maximum capacity of the hash map is chosen to be
+		"unsigned long long int", since it can store bigger values than the "int"
+		data type.
+	
 
 
 

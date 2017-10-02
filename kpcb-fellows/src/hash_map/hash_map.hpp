@@ -48,6 +48,12 @@
 #include <cstring>
 #include <limits.h>			// For std::UINT_MAX
 
+
+// Importing from Boost C++ Library
+#include <boost/functional/hash.hpp>
+
+
+
 #ifndef __HASH_MAP_H
 #define __HASH_MAP_H
 using namespace std;
@@ -93,9 +99,23 @@ class hash_map {
 	// Privately accessible data members and functions.
 	
 	private:
-		// Name of the my_element object.
-		string name;
-		// Maximum capacity of .
+		/**
+		 * Key (from the key-value pair) of an element in the hash
+		 *	map.
+		 *
+		 * I chose to represent keys as strings, so that they can be
+		 *	easily printed.
+		 *
+		 * gperf -language=C++ 
+		 */
+		string key;
+		/**
+		 * Maximum capacity of hash map data structure.
+		 *
+		 * Data type for the maximum capacity of the hash map is
+		 *	chosen to be "unsigned long long int", since it can store
+		 *	bigger values than the "int" data type.
+		 */
 		unsigned long long int maximum_capacity;
 
 		// -------------------------------------------------------
