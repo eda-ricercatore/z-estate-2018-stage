@@ -7,6 +7,9 @@
  *
  *
  * #### IMPORTANT NOTES:
+ * Use the chrono library from the STL for timing measurements
+ *	\cite{Mohanty2016}.
+ *
  * To be completed...
  *
  *
@@ -55,6 +58,8 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+// For timing measurements
+#include <chrono>
 
 /**
  * std::hash is a functor type, which is stateless, not a hash
@@ -100,7 +105,12 @@ int main(int argc, char *argv[]) {
 
 	cout << "" << endl;
 	cout << endl;
+	auto t1 = chrono::steady_clock::now();
 	cout << "Hash value is:" << a->get_mes_hash()<<"."<<endl;
+	auto t2 = chrono::steady_clock::now() - t1;
+	// Duration of hash function get_mes_hash() in seconds.
+	double t2_double = chrono::duration<double>(t2).count();
+	cout << "Duration of get_mes_hash():"<<t2_double<<" seconds."<<endl;
 
 	cout << "==============================================" << endl;
 	// End of main function...

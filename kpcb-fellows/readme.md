@@ -27,7 +27,9 @@ Design decisions:
 	- Data type for the maximum capacity of the hash map is chosen to be
 		"unsigned long long int", since it can store bigger values than the "int"
 		data type.
-	
+	- Data type for the hash value of the hash map is chosen to be a string,
+		since it can support implementations of non-numerical hashing
+		functions.
 
 
 
