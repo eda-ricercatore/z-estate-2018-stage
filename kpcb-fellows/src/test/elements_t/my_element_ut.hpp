@@ -72,7 +72,7 @@ class my_element_ut {
 		// ----------------------------------------------------------
 
 		/**
-		 * Function to test the constructor and functions of
+		 * Function to test the constructors and functions of
 		 *	my_element.
 		 */
 		static void test_my_element_ut();
@@ -88,6 +88,12 @@ class my_element_ut {
 		 *	name and index number of a my_element object.
 		 */
 		static void test_my_element_mutator_functions();
+		
+		/**
+		 * Function to test the hash functions regarding the name and
+		 *	objects (i.e., instances varaibles) of my_element.  
+		 */
+		static void test_my_element_hash_functions();
 };
 #endif
 

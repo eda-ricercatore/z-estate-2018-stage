@@ -3,7 +3,7 @@
  * Module to contain class definitions and implementations of objects
  *	that would be stored in the hash map.
  *
- * my_element class:
+ * my_element_sandbox class:
  * Class to contain a name (i.e., a string) and an index number
  *	(i.e., a number/integer).
  * Accessor and mutator functions are provided for accessing and
@@ -55,13 +55,13 @@
 
 
 
-#ifndef __MY_ELEMENT_H
-#define __MY_ELEMENT_H
+#ifndef __MY_ELEMENT_SANDBOX_H
+#define __MY_ELEMENT_SANDBOX_H
 using namespace std;
 
 // =========================================================
 
-// Class definition of the my_element class
+// Class definition of the my_element_sandbox class
 class my_element_sandbox {
 	// Publicly accessible data members, constructors, and functions
 	public:
@@ -76,10 +76,10 @@ class my_element_sandbox {
 	
 		// Accessor functions.
 		
-		// Function to get the name of the my_element object.
+		// Function to get the name of the my_element_sandbox object.
 		string get_name();
 		
-		// Function to get the index number of the my_element object.
+		// Function to get the index number of the my_element_sandbox object.
 		int get_index_number();
 				
 		// -----------------------------------------------------
@@ -108,9 +108,9 @@ class my_element_sandbox {
 	// Privately accessible data members and functions.
 	
 	private:
-		// Name of the my_element object.
+		// Name of the my_element_sandbox object.
 		string name;
-		// Index Number of the my_element object.
+		// Index Number of the my_element_sandbox object.
 		int index_number;
 
 		// -------------------------------------------------------

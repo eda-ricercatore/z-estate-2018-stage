@@ -109,3 +109,43 @@ void my_element::set_index_number(int new_index_number) {
 	
 	return;
 }
+
+
+// -----------------------------------------------------
+
+// Hash functions.
+
+/**
+ * Function to hash a string.
+ *	\cite{Nelson2011}
+ * @param str: A string to be hashed.
+ * @return - Hash value of str.
+ */
+string my_element::get_string_hash(string str) {
+	auto h = hash<string>{}(str);
+	return to_string(h);
+}
+
+
+/**
+ * Function to hash the name.
+ *	\cite{Nelson2011}
+ * @param - None.
+ * @return - Hash value of name.
+ */
+string my_element::get_name_hash() {
+	auto h = hash<string>{}(name);
+	return to_string(h);
+}
+
+
+/**
+ * Function to hash a my_element object.
+ *	\cite{Nelson2011}
+ * @param - None.
+ * @return - Hash value of my_element object.
+ */
+string my_element::get_me_hash() {
+	auto hash_val = hash<string>()(get_name()) ^ (hash<int>()(get_index_number()) << 1);
+	return to_string(hash_val);
+}

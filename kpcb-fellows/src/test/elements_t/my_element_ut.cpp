@@ -61,7 +61,7 @@ my_element_ut::my_element_ut() {
 // ===========================================================
 
 /**
- * Function to test the constructor and functions of my_element.
+ * Function to test the constructors and functions of my_element.
  * @param - None.
  * @return - Nothing.
  */
@@ -153,4 +153,25 @@ void my_element_ut::test_my_element_mutator_functions() {
 	}else{
 		cout << "			NO!!!" << endl;
 	}
+}
+
+
+
+/**
+ * Function to test the hash functions regarding the name and
+ *	objects (i.e., instances varaibles) of my_element.
+ *	\cite{Nelson2011}
+ * @param - None
+ * @return - Nothing
+ */
+void test_my_element_hash_functions() {
+	string temp_str = "Tu che abiti al riparo dell'Altissimo e dimori all'ombra dell'Onnipotente,"
+	string t_name = "Il Signore è il mio pastore: non manco di nulla;";
+	int t_index_number = 836491286;
+	// Use
+	my_element *my_elem = new my_element(t_name,t_index_number);
+	cout << "Hash value of temp_str:";
+	cout << my_elem->get_string_hash(temp_str);
+	cout << "." << endl;
+	cout << "Hash value of my_elem's name:" <<  << endl;
 }

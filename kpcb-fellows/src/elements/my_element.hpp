@@ -90,6 +90,19 @@ class my_element {
 		
 		// Function to update the index number.
 		void set_index_number(int new_index_number);
+		
+		// -----------------------------------------------------
+		
+		// Hash functions.
+		
+		// Function to hash a string.
+		string get_string_hash(string str);
+		
+		// Function to hash the name.
+		string get_name_hash();
+		
+		// Function to hash this my_element object.
+		string get_me_hash();
 	
 	// =========================================================
 	

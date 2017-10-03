@@ -3,7 +3,7 @@
  * Module to contain class definitions and implementations of objects
  *	that would be stored in the hash map.
  *
- * my_element class:
+ * my_element_sandbox class:
  * Class to contain a name (i.e., a string) and an index number
  *	(i.e., a number/integer).
  * Accessor and mutator functions are provided for accessing and
@@ -64,9 +64,9 @@ my_element_sandbox::my_element_sandbox(string a_name, int an_index_number) {
 // Accessor functions.
 
 /**
- * Function to get the name of the my_element object.
- * @param - None
- * @return - Name of the my_element object.
+ * Function to get the name of the my_element_sandbox object.
+ * @param - None.
+ * @return - Name of the my_element_sandbox object.
  */
 string my_element_sandbox::get_name() {
 	return name;
@@ -74,9 +74,9 @@ string my_element_sandbox::get_name() {
 
 
 /**
- * Function to get the index number of the my_element object.
- * @param - None
- * @return - Index number of the my_element object.
+ * Function to get the index number of the my_element_sandbox object.
+ * @param - None.
+ * @return - Index number of the my_element_sandbox object.
  */
 int my_element_sandbox::get_index_number() {
 	return index_number;
@@ -90,7 +90,7 @@ int my_element_sandbox::get_index_number() {
 
 /**
  * Function to update the name.
- * @param new_name:	New name for the my_element object.
+ * @param new_name:	New name for the my_element_sandbox object.
  * @return - Nothing.
  */
 void my_element_sandbox::set_name(string new_name) {
@@ -101,7 +101,7 @@ void my_element_sandbox::set_name(string new_name) {
 
 /**
  * Function to update the index number.
- * @param new_index_number:	New index number for the my_element object.
+ * @param new_index_number:	New index number for the my_element_sandbox object.
  * @return - Nothing.
  */
 void my_element_sandbox::set_index_number(int new_index_number) {
@@ -128,6 +128,9 @@ string my_element_sandbox::get_string_hash(string str) {
 
 /**
  * Function to hash a my_element_sandbox object.
+ * \cite{Nelson2011}
+ * @param - None.
+ * @return - Hash value of str.
  */
 string my_element_sandbox::get_mes_hash() {
 	auto hash_val = hash<string>()(get_name()) ^ (hash<int>()(get_index_number()) << 1);

@@ -31,6 +31,10 @@ Design decisions:
 		since it can support implementations of non-numerical hashing
 		functions.
 
+## Challenges
+
+Determine if the templated hash map would require implementation of a hash
+	function, or equivalent (e.g., a function object).
 
 
 #	Organization of the Repository
