@@ -27,8 +27,10 @@ Design decisions:
 	- Data type for the maximum capacity of the hash map is chosen to be
 		"unsigned long long int", since it can store bigger values than the "int"
 		data type.
-	- Data type for the hash value of the hash map is chosen to be a string,
-		since it can support implementations of non-numerical hashing
+		Hence, the data type for the number of items/pairs in the hash map
+			would also be "unsigned long long int". 
+	- Data type for the hash value (i.e., key) of the hash map is chosen to be a
+		string, since it can support implementations of non-numerical hashing
 		functions.
 	- The default size of the fixed-size hash map is chosen to be 10, so that it
 		is small enough to be tested exhaustively. 
