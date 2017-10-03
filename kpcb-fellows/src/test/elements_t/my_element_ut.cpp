@@ -71,7 +71,8 @@ void my_element_ut::test_my_element_ut() {
 	test_my_element_constructor_and_accessor_functions();
 	// Test mutator functions of the my_element class.
 	test_my_element_mutator_functions();
-	
+	// Test hash functions of my_element.
+	test_my_element_hash_functions();
 	cout << endl;
 }
 
@@ -164,14 +165,56 @@ void my_element_ut::test_my_element_mutator_functions() {
  * @param - None
  * @return - Nothing
  */
-void test_my_element_hash_functions() {
-	string temp_str = "Tu che abiti al riparo dell'Altissimo e dimori all'ombra dell'Onnipotente,"
+void my_element_ut::test_my_element_hash_functions() {
+	string temp_str = "Tu che abiti al riparo dell'Altissimo e dimori all'ombra dell'Onnipotente,";
 	string t_name = "Il Signore è il mio pastore: non manco di nulla;";
 	int t_index_number = 836491286;
 	// Use
 	my_element *my_elem = new my_element(t_name,t_index_number);
+/*
+	// Hash value of temp_str:3673309267940264664.
 	cout << "Hash value of temp_str:";
-	cout << my_elem->get_string_hash(temp_str);
-	cout << "." << endl;
-	cout << "Hash value of my_elem's name:" <<  << endl;
+	cout << my_elem->get_string_hash(temp_str) << "." << endl;
+	// Hash value of my_elem's name:16166665962899187823.
+	cout << "Hash value of my_elem's name:";
+	cout << my_elem->get_name_hash() << "." << endl;
+	// Hash value of my_elem object:16166665961317242947.
+	cout << "Hash value of my_elem object:";
+	cout << my_elem->get_me_hash() << "." << endl;
+*/
+
+	/**
+	 * Check if the hash values correspond to the block comment
+	 *	(or comment block) above, for the pair of hashed strings (or
+	 *	hashed my_element object) and hash values.
+	 */
+ 	string hash_value = "3673309267940264664";
+	cout << "==tu	>>	Hash value for temp_str = 3673309267940264664?";
+	printer::num_test_cases_eval();
+	if(0 == hash_value.compare(my_elem->get_string_hash(temp_str))) {
+		cout << "	Yes." << endl;
+		printer::num_passed_test_cases_eval();
+	}else{
+		cout << "	No." << endl;
+	}
+	
+	hash_value = "16166665962899187823";
+	cout << "==tu	>>	Hash value for temp_str = 16166665962899187823?";
+	printer::num_test_cases_eval();
+	if(0 == hash_value.compare(my_elem->get_name_hash())) {
+		cout << "	Yes." << endl;
+		printer::num_passed_test_cases_eval();
+	}else{
+		cout << "	No." << endl;
+	}
+	
+	hash_value = "16166665961317242947";
+	cout << "==tu	>>	Hash value for temp_str = 16166665961317242947?";
+	printer::num_test_cases_eval();
+	if(0 == hash_value.compare(my_elem->get_me_hash())) {
+		cout << "	Yes." << endl;
+		printer::num_passed_test_cases_eval();
+	}else{
+		cout << "	No." << endl;
+	}
 }
