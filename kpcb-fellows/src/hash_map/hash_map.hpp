@@ -74,10 +74,10 @@ class hash_map {
 		// Default constructor.
 		hash_map();
 		/**
-		 * Standard constructor, with its maximum capacity has an
-		 *	input parameter.
+		 * Standard constructor, with its size (maximum capacity)
+		 *	has an input parameter.
 		 */
-		hash_map(unsigned long long int max_cap);
+		hash_map(unsigned long long int size);
 
 		// -----------------------------------------------------
 		
@@ -89,7 +89,7 @@ class hash_map {
 		string get_name();
 		
 		// Function to get the index number of the my_element object.
-		int get_index_number();
+		int get(string key);
 		
 		// Function to get the load factor of the fixed-size hash map.
 		float load(); 
@@ -123,6 +123,9 @@ class hash_map {
 		 *	bigger values than the "int" data type.
 		 */
 		unsigned long long int maximum_capacity;
+
+		// Number of items/pairs in the hash map data structure.
+		unsigned long long int number_of_pairs;
 
 		// -------------------------------------------------------
 		

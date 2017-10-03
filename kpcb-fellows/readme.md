@@ -30,6 +30,15 @@ Design decisions:
 	- Data type for the hash value of the hash map is chosen to be a string,
 		since it can support implementations of non-numerical hashing
 		functions.
+	- The default size of the fixed-size hash map is chosen to be 10, so that it
+		is small enough to be tested exhaustively. 
+	- Assume that this fixed-size hash map behaves as a set.
+		When a user attempts to add duplicates into the hash map, this
+			operation shall fail.
+		That is, *set(key, value)* shall return false when duplicates of (key,value)
+			pairs are added to the hash map.
+		Also, *set(key, value)* shall return false when the *load factor* of the hash
+			map is 1.
 
 ## Challenges
 
