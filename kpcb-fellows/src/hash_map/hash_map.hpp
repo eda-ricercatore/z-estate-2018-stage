@@ -85,11 +85,8 @@ class hash_map {
 	
 		// Accessor functions.
 		
-		// Function to get the name of the my_element object.
-		string get_name();
-		
 		// Function to get the index number of the my_element object.
-		int get(string key);
+		my_element get(string key);
 		
 		// Function to get the load factor of the fixed-size hash map.
 		float load(); 
@@ -98,17 +95,14 @@ class hash_map {
 
 		// Mutator functions.
 		
-		// Function to update the name.
-		void set_name(string new_name);
-		
-		// Function to update the index number.
-		void set_index_number(int new_index_number);
+		// Function to add the pair (key, value) to the hash map.
+		boolean set(string key, my_element value);
 		
 		/**
 		 * Function to delete the (key,value) pair associated with
 		 *	the key with the value 'key'.
 		 */
-		void delete(string key);
+		my_element delete_pair(string key);
 	
 	// =========================================================
 	
@@ -131,6 +125,21 @@ class hash_map {
 		
 		// Define headers for private functions...
 
+		// Accessor functions.
+
+		/**
+		 * Function to get the number of items or (key,value) pairs
+		 *	in the hash map.
+		 */
+		unsigned long long int get_number_of_pairs();
+
+		// Function to get the maximum capacity of the hash map.
+		unsigned long long int get_maximum_capacity();
+
+		// -----------------------------------------------------
+
+		// Mutator functions.
+		void increment_number_of_pairs();
 };
 #endif
 
