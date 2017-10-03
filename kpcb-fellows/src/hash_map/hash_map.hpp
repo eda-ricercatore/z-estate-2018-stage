@@ -83,6 +83,9 @@ class hash_map {
 		
 		// Function to get the index number of the my_element object.
 		int get_index_number();
+		
+		// Function to get the load factor of the fixed-size hash map.
+		float load(); 
 				
 		// -----------------------------------------------------
 
@@ -93,6 +96,12 @@ class hash_map {
 		
 		// Function to update the index number.
 		void set_index_number(int new_index_number);
+		
+		/**
+		 * Function to delete the (key,value) pair associated with
+		 *	the key with the value 'key'.
+		 */
+		void delete(string key);
 	
 	// =========================================================
 	
