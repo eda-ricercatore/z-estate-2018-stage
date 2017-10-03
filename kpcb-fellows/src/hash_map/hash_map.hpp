@@ -60,6 +60,13 @@ using namespace std;
 
 // =========================================================
 
+/**
+ * Shortcut to a pair representing (key, value).
+ */
+typedef pair<string, my_element> pair_str_myelement;
+
+// =========================================================
+
 // Class definition of the hash_map class
 class hash_map {
 	// Publicly accessible data members, constructors, and functions
@@ -70,7 +77,7 @@ class hash_map {
 		 * Standard constructor, with its maximum capacity has an
 		 *	input parameter.
 		 */
-		hash_map(unsigned long long int an_index_number);
+		hash_map(unsigned long long int max_cap);
 
 		// -----------------------------------------------------
 		
@@ -108,16 +115,6 @@ class hash_map {
 	// Privately accessible data members and functions.
 	
 	private:
-		/**
-		 * Key (from the key-value pair) of an element in the hash
-		 *	map.
-		 *
-		 * I chose to represent keys as strings, so that they can be
-		 *	easily printed.
-		 *
-		 * gperf -language=C++ 
-		 */
-		string key;
 		/**
 		 * Maximum capacity of hash map data structure.
 		 *

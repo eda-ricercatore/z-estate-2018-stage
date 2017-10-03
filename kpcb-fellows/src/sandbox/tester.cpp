@@ -47,7 +47,7 @@
  */
 
 // Import Header files from the C++ STL
-#include <iostream>
+#include <iostream>	// cout
 #include <iomanip>
 #include <fstream>
 #include <string>
@@ -60,7 +60,8 @@
 #include <stdlib.h>
 // For timing measurements
 #include <chrono>
-
+// For pair and make_pair 
+#include <utility>
 /**
  * std::hash is a functor type, which is stateless, not a hash
  *	function.
@@ -85,6 +86,9 @@ using namespace std;
 //typedef list<blk_pin *> blk_pin_list;
 // Shortcut to represent a pointer to list of blk_pins
 //typedef list<blk_pin *>::iterator blk_pin_l_p;
+
+// Shortcut to a pair representing (key, value).
+typedef pair<string, my_element_sandbox> pair_str_myelementsandbox;
 
 // =======================================================================
 
@@ -113,6 +117,9 @@ int main(int argc, char *argv[]) {
 	cout << "Duration of get_mes_hash():"<<t2_double<<" seconds."<<endl;
 
 	cout << "==============================================" << endl;
+
+	// Define an 
+
 	// End of main function...
 	return 0;
 }
