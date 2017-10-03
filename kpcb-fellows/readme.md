@@ -4,6 +4,12 @@
 
 See [Problem Description](https://github.com/eda-ricercatore/z-estate-2018-stage/blob/master/kpcb-fellows/problem.md).
 
+This is written by Zhiyang Ong to implement "a fixed-size hash map that
+	associates string keys with arbitrary data object references" [KPCB staff 2017].
+
+To optimize the data structure for algorithmic runtime and memory usage, do not
+	copy the object [KPCB staff 2017]; instead, pass variables by reference.
+
 ###	Blurb of Problem Description
 
 Design and implement a fixed-size hash map. 
