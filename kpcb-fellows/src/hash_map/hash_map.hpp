@@ -89,8 +89,14 @@ class hash_map {
 		my_element get(string key);
 		
 		// Function to get the load factor of the fixed-size hash map.
-		float load(); 
-				
+		float load();
+
+		/**
+		 * Function to get the index in the array hash map for the
+		 *	(key,value) pair.
+		 */
+ 		unsigned long long int find(string key);
+
 		// -----------------------------------------------------
 
 		// Mutator functions.
@@ -120,6 +126,9 @@ class hash_map {
 
 		// Number of items/pairs in the hash map data structure.
 		unsigned long long int number_of_pairs;
+		
+		// Array of pair_str_myelement, pair<string, my_element>.
+		pair_str_myelement psm;
 
 		// -------------------------------------------------------
 		
@@ -139,6 +148,11 @@ class hash_map {
 		// -----------------------------------------------------
 
 		// Mutator functions.
+		
+		/**
+		 * Function to increment the number of items or (key,value)
+		 *	pairs in the hash map by one.
+		 */
 		void increment_number_of_pairs();
 };
 #endif
