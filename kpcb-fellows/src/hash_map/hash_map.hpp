@@ -10,7 +10,8 @@
  *	and removal of (key, value) pairs.
  * It supports miscellaneous tasks/functions, such as determining
  *	the load factor.
- *
+ * Assumes that each value has a unique hash key.
+ * Assume that multiple values cannot be hashed to the same key. 
  *
  *
  *

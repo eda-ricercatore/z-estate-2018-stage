@@ -10,7 +10,8 @@
  *	and removal of (key, value) pairs.
  * It supports miscellaneous tasks/functions, such as determining
  *	the load factor.
- *
+ * Assumes that each value has a unique hash key.
+ * Assume that multiple values cannot be hashed to the same key.
  *
  *
  *
@@ -66,8 +67,15 @@ hash_map::hash_map() {
 /**
  * Standard constructor, with its size (maximum capacity) has an
  *	input parameter.
+ * @assertion - The size (or maximum capacity) of the fixed-size hash
+ *	map cannot be set to ULLONG_MAX.
+ *	Else, it is difficult to determine if the fixed-size hash map is
+ *		full (at maximum capacity).
  */
 hash_map::hash_map(unsigned long long int size) {
+	if(ULLONG_MAX == size) {
+		throw new violated_assertion("size < ULLONG_MAX is required.");
+	}
 	maximum_capacity = size;
 	number_of_pairs = 0;
 	pair_str_myelement = new pair<string, my_element>[maximum_capacity];
@@ -88,7 +96,22 @@ hash_map::hash_map(unsigned long long int size) {
  *	to the key 'key'. Else, return null.
  */
 my_element hash_map::get(string key) {
-	//
+	/**
+	 * For each (key,value) pair in the array implementation of a
+	 *	hash map...
+	 */
+	for(unsigned long long int i=0; i<maximum_capacity; i++) {
+		// Is its key equal to the search key 'key'?
+		if(0 == (psm[i].first).compare(key)) {
+			/**
+			 * Yes. (key,value) pair is found in the hash map.
+			 * Return the 'value' for this (key,value) pair.
+			 */
+		 	return psm[i].second;
+		}
+	}
+	// 'key' can be found in the fixed-size hash map.
+	return null;
 }
 		
 /**
@@ -113,7 +136,7 @@ unsigned long long int find(string key) {
 	 * For each (key,value) pair in the array implementation of a
 	 *	hash map...
 	 */
-	for(int i=0; i<maximum_capacity; i++) {
+	for(unsigned long long int i=0; i<maximum_capacity; i++) {
 		// Is its key equal to the search key 'key'?
 		if(0 == (psm[i].first).compare(key)) {
 			// Yes. Return current index in the array.
@@ -138,6 +161,35 @@ unsigned long long int find(string key) {
  *	hash map. Else, return false.
  */
 boolean hash_map::set(string key, my_element value) {
+	if (number_of_pairs < maximum_capacity) {
+		/**
+		 * For each (key,value) pair in the array implementation of
+		 *	a hash map...
+		 */
+		for(unsigned long long int i=0; i<maximum_capacity; i++) {
+			// Is its key equal to the search key 'key'?
+			if(0 == (psm[i].first).compare(key)) {
+				/**
+				 * Yes. (key,value) pair already exists in the
+				 *	hash map.
+				 * (key,value) pair can't be added to the hash map
+				 *	again.
+				 */
+				return false;
+			}else if(null === (psm[i].first)) {
+				/**
+				 * An empty space exists in the fixed-size hash map.
+				 * Add the (key,value) pair to the hash map in this
+				 *	empty space. 
+				 */
+				psm[i].first = key;
+				psm[i].second = value;
+				increment_number_of_pairs();
+				return true;
+			}
+		}	// Fixed-size hash map is full (at maximum capacity).
+	}
+	// Fixed-size hash map is full (at maximum capacity).
 	return false;
 }
 
@@ -155,7 +207,26 @@ boolean hash_map::set(string key, my_element value) {
  *	return the value 'value' of (key,value) pair. Else, return null.
  */
 my_element hash_map::delete_pair(string key) {
-	// 
+	/**
+	 * For each (key,value) pair in the array implementation of
+	 *	a hash map...
+	 */
+	for(unsigned long long int i=0; i<maximum_capacity; i++) {
+		// Is its key equal to the search key 'key'?
+		if(0 == (psm[i].first).compare(key)) {
+			/**
+			 * Yes. (key,value) pair is found in the hash map.
+			 * Temporary store 'value', and delete the pair from the
+			 *	hash map.
+			 */
+		 	my_element temp_elem = psm[i].second;
+			psm[i].first = null;
+			psm[i].second = null;
+			return temp_elem;
+		}
+	}
+	// (key,value) pair is not found in the hash map.
+	return null;
 }
 
 
@@ -169,11 +240,11 @@ my_element hash_map::delete_pair(string key) {
  * @param - None.
  * @return - The number of items or (key,value) pairs in the
  *	hash map.
- * @postcondition - (number_of_pairs <= maximum_capacity) must be true.
+ * @assertion - (number_of_pairs <= maximum_capacity) must be true.
  */
 unsigned long long int hash_map::get_number_of_pairs() {
 	if (number_of_pairs > maximum_capacity) {
-		throw new violated_postcondition();
+		throw new violated_assertion("Maximum capacity exceeded.");
 	}
 
 	return number_of_pairs;
@@ -184,11 +255,11 @@ unsigned long long int hash_map::get_number_of_pairs() {
  * Function to get the maximum capacity of the hash map.
  * @param - None.
  * @return - The maximum capacity of the hash map.
- * @postcondition - (number_of_pairs <= maximum_capacity) must be true.
+ * @assertion - (number_of_pairs <= maximum_capacity) must be true.
  */
 unsigned long long int hash_map::get_maximum_capacity() {
 	if (number_of_pairs > maximum_capacity) {
-		throw new violated_postcondition("number_of_pairs > maximum_capacity. Accessor.");
+		throw new violated_assertion("number_of_pairs > maximum_capacity. Accessor.");
 	}
 
 	return maximum_capacity;
@@ -200,14 +271,21 @@ unsigned long long int hash_map::get_maximum_capacity() {
  *	pairs in the hash map by one.
  * @param - None.
  * @return - Nothing.
+ * @violated_assertion - Thrown, if no more empty space exists when
+ *	an element is "added" to the hash map.
+ * @postcondition - Thrown, if maximum capacity of the hash map has
+ *	been exceeded.
  */
 void hash_map::increment_number_of_pairs() {
+	// Is there any empty space in the fied-size hash map?
 	if (number_of_pairs < maximum_capacity) {
+		// Yes.
 		number_of_pairs = number_of_pairs + 1;
 	}else{
+		// No.
 		throw new violated_assertion("Hash map is at maximum capacity.");
 	}
-	
+	// Check if maximum capacity of the hash map has been exceeded.
 	if (number_of_pairs > maximum_capacity) {
 		throw new violated_postcondition("number_of_pairs > maximum_capacity. Mutator.");
 	}
