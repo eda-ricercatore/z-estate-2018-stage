@@ -107,7 +107,7 @@ void hash_map_ut::test_hash_map_constructor_and_accessor_functions() {
 	printer::num_test_cases_eval();
 	if((NULL == hm->get(my_elem->get_string_hash(my_elem->get_name())))
 		&& (ULLONG_MAX == hm->find(my_elem->get_string_hash(my_elem->get_name())))) {
-		cout << "	Yes." << endl;
+		cout << "			Yes." << endl;
 		printer::num_passed_test_cases_eval();
 	}else{
 		cout << "	NO!!!" << endl;
@@ -116,7 +116,7 @@ void hash_map_ut::test_hash_map_constructor_and_accessor_functions() {
 	cout << "==tu	>>	Empty (*hm) has load factor of 0?";
 	printer::num_test_cases_eval();
 	if(0.0 == hm->load()) {
-		cout << "	Yes." << endl;
+		cout << "		Yes." << endl;
 		printer::num_passed_test_cases_eval();
 	}else{
 		cout << "	NO!!!" << endl;
@@ -131,7 +131,7 @@ void hash_map_ut::test_hash_map_constructor_and_accessor_functions() {
 		cout << "	NO!!!" << endl;
 	}
 	
-	cout << "==tu	>>	Standard constructor's maximum capacity = 12345001?";
+	cout << "==tu	>>	Std constructor's max capacity = 12345001?";
 	unsigned long long int temp_maximum_capacity = 12345001;
 	hm = new hash_map(temp_maximum_capacity);
 	printer::num_test_cases_eval();
@@ -149,6 +149,7 @@ void hash_map_ut::test_hash_map_constructor_and_accessor_functions() {
 		printer::num_passed_test_cases_eval();
 	}else{
 		cout << "	NO!!!" << endl;
+	}
 }
 
 
