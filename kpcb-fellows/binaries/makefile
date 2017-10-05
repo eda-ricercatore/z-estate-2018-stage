@@ -148,6 +148,7 @@ test:
 	@echo === Elements Directory
 	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(ELEMPATH)$(SOURCE)
 	@echo === Hash Map Directory
+	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(HASHMAPPATH)$(SOURCE)
 	@echo === Test/Utilities_t Directory
 	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(TPUTILITIES)$(SOURCE)
 	@echo === Test/Elements_t Directory

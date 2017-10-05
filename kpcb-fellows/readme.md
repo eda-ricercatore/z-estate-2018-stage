@@ -87,6 +87,13 @@ This repository is organized into the following directories (and subdirectories)
 
 
 
+#	To-Do List
+
+Stack of phrases that I was looking up:
++ array static variable C++
++ pair array C++
+
+
 #	References
 
 [KPCB staff 2017]

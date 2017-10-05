@@ -37,11 +37,13 @@
  */
 
 // Import packages from the software
-// Utilities class.
+// Utilities package/module.
 #include "../utilities/violated_assertion.hpp"
 #include "../utilities/violated_precondition.hpp"
 #include "../utilities/violated_postcondition.hpp"
 #include "../utilities/printer.hpp"
+// Elements package/module.
+#include "../elements/my_element.hpp"
 
 // Import packages from the C++ STL
 #include <iostream>
@@ -51,7 +53,7 @@
 
 
 // Importing from Boost C++ Library
-#include <boost/functional/hash.hpp>
+//#include <boost/functional/hash.hpp>
 
 
 
@@ -62,9 +64,9 @@ using namespace std;
 // =========================================================
 
 /**
- * Shortcut to a pair representing (key, value).
+ * Shortcut to a dynamic array of (key, value) pairs.
  */
-typedef pair<string, my_element> pair_str_myelement;
+typedef pair<string, my_element> *pair_str_myelement;
 
 // =========================================================
 
@@ -87,7 +89,7 @@ class hash_map {
 		// Accessor functions.
 		
 		// Function to get the index number of the my_element object.
-		my_element get(string key);
+		my_element* get(string key);
 		
 		// Function to get the load factor of the fixed-size hash map.
 		float load();
@@ -103,13 +105,13 @@ class hash_map {
 		// Mutator functions.
 		
 		// Function to add the pair (key, value) to the hash map.
-		boolean set(string key, my_element value);
+		bool set(string key, my_element value);
 		
 		/**
 		 * Function to delete the (key,value) pair associated with
 		 *	the key with the value 'key'.
 		 */
-		my_element delete_pair(string key);
+		my_element* delete_pair(string key);
 	
 	// =========================================================
 	
