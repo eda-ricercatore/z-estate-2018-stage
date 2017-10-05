@@ -81,6 +81,9 @@ class hash_map {
 		 *	has an input parameter.
 		 */
 		hash_map(unsigned long long int size);
+		
+		// Default destructor.
+		~hash_map();
 
 		// -----------------------------------------------------
 		

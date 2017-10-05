@@ -85,6 +85,11 @@ hash_map::hash_map(unsigned long long int size) {
 }
 
 
+// Default destructor.
+hash_map::~hash_map() {
+	printer::debug_std_op_ln("	Call destructor for hash_map.");
+}
+
 // -----------------------------------------------------
 
 // Accessor functions.
@@ -230,7 +235,8 @@ my_element* hash_map::delete_pair(string key) {
 		 	my_element *temp_elem = &psm[i].second;
 		 	// Set the key of the (key,value) pair to an empty string.
 			psm[i].first = "";
-			psm[i].second = NULL;
+			//psm[i].second = NULL;
+			delete psm[i].second;
 			return temp_elem;
 		}
 	}
