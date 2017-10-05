@@ -48,7 +48,7 @@ using namespace std;
 /**
  * * Shortcut to a dynamic array of (key, value) pairs.
  */
-typedef pair<string, my_element> *pair_str_myelement;
+typedef pair<string, my_element*> *pair_str_myelement;
 
 // =========================================================
 
@@ -60,7 +60,7 @@ hash_map::hash_map() {
 	 */
 	maximum_capacity = 10;
 	number_of_pairs = 0;
-	psm = new pair<string, my_element>[maximum_capacity];
+	psm = new pair<string, my_element*>[maximum_capacity];
 	//pair_str_myelement psm[maximum_capacity];
 }
 
@@ -79,7 +79,7 @@ hash_map::hash_map(unsigned long long int size) {
 	}
 	maximum_capacity = size;
 	number_of_pairs = 0;
-	psm = new pair<string, my_element>[maximum_capacity];
+	psm = new pair<string, my_element*>[maximum_capacity];
 	//pair_str_myelement = new pair<string, my_element>[maximum_capacity];
 	//pair_str_myelement = pair<string, my_element>[maximum_capacity];
 }
@@ -115,7 +115,7 @@ my_element* hash_map::get(string key) {
 			 * Yes. (key,value) pair is found in the hash map.
 			 * Return the 'value' for this (key,value) pair.
 			 */
-		 	my_element *temp = &psm[i].second; 
+		 	my_element *temp = psm[i].second; 
 		 	return temp;
 		}
 	}
@@ -196,7 +196,7 @@ bool hash_map::set(string key, my_element value) {
 				 *	empty space. 
 				 */
 				psm[i].first = key;
-				psm[i].second = value;
+				(*psm[i].second) = value;
 				increment_number_of_pairs();
 				return true;
 			}
@@ -232,7 +232,7 @@ my_element* hash_map::delete_pair(string key) {
 			 * Temporary store 'value', and delete the pair from the
 			 *	hash map.
 			 */
-		 	my_element *temp_elem = &psm[i].second;
+		 	my_element *temp_elem = psm[i].second;
 		 	// Set the key of the (key,value) pair to an empty string.
 			psm[i].first = "";
 			//psm[i].second = NULL;

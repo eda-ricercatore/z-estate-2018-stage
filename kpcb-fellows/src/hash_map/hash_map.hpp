@@ -66,7 +66,7 @@ using namespace std;
 /**
  * Shortcut to a dynamic array of (key, value) pairs.
  */
-typedef pair<string, my_element> *pair_str_myelement;
+typedef pair<string, my_element*> *pair_str_myelement;
 
 // =========================================================
 
