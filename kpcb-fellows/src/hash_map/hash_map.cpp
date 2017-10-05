@@ -110,7 +110,7 @@ my_element* hash_map::get(string key) {
 			 * Yes. (key,value) pair is found in the hash map.
 			 * Return the 'value' for this (key,value) pair.
 			 */
-		 	my_element *temp = psm[i].second; 
+		 	my_element *temp = &psm[i].second; 
 		 	return temp;
 		}
 	}
@@ -184,7 +184,7 @@ bool hash_map::set(string key, my_element value) {
 			 * Else if the key of the pair at the current index is
 			 *	an empty string...
 			 */
-			}else if("" === (psm[i].first)) {
+			}else if("" == (psm[i].first)) {
 				/**
 				 * An empty space exists in the fixed-size hash map.
 				 * Add the (key,value) pair to the hash map in this
@@ -227,7 +227,7 @@ my_element* hash_map::delete_pair(string key) {
 			 * Temporary store 'value', and delete the pair from the
 			 *	hash map.
 			 */
-		 	my_element *temp_elem = psm[i].second;
+		 	my_element *temp_elem = &psm[i].second;
 		 	// Set the key of the (key,value) pair to an empty string.
 			psm[i].first = "";
 			psm[i].second = NULL;
