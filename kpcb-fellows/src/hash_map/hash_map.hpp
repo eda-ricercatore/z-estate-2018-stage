@@ -102,6 +102,15 @@ class hash_map {
 		 *	(key,value) pair.
 		 */
  		unsigned long long int find(string key);
+ 		
+ 		/**
+		 * Function to get the number of items or (key,value) pairs
+		 *	in the hash map.
+		 */
+		unsigned long long int get_number_of_pairs();
+
+		// Function to get the maximum capacity of the hash map.
+		unsigned long long int get_maximum_capacity();
 
 		// -----------------------------------------------------
 
@@ -141,15 +150,6 @@ class hash_map {
 		// Define headers for private functions...
 
 		// Accessor functions.
-
-		/**
-		 * Function to get the number of items or (key,value) pairs
-		 *	in the hash map.
-		 */
-		unsigned long long int get_number_of_pairs();
-
-		// Function to get the maximum capacity of the hash map.
-		unsigned long long int get_maximum_capacity();
 
 		// -----------------------------------------------------
 

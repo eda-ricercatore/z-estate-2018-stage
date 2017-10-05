@@ -153,6 +153,8 @@ test:
 	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(TPUTILITIES)$(SOURCE)
 	@echo === Test/Elements_t Directory
 	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(TPELEM)$(SOURCE)
+	@echo === Test/Hash_map_t Directory
+	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(TPHASHMAP)$(SOURCE)
 	@echo === Test Directory
 	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(SOURCE)
 	@echo === Link the C++ object files...

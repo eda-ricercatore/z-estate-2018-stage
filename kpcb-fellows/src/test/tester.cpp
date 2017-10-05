@@ -80,7 +80,10 @@
 // Import Header files from the other modules of lamiera-per-caldaie.
 // Utilities module
 #include "utilities_t/utilities_mt.hpp"
+// Elements module
 #include "elements_t/elements_mt.hpp"
+// Hash_map module
+#include "hash_map_t/hash_map_mt.hpp"
 //#include "../../elements_t/elements_mt.hpp"
 //#include "../elements_t/elements_mt.hpp"
 /*
@@ -155,6 +158,11 @@ int main(int argc, char *argv[]) {
 	printer::debug_std_op_ln("");
 	printer::debug_std_op_ln("");
 	
+	
+	// Testing the hash_map package
+	hash_map_mt::test_hash_map_mt();
+	printer::debug_std_op_ln("");
+	printer::debug_std_op_ln("");
 
 
 	

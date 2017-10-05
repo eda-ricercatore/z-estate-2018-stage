@@ -92,6 +92,7 @@ This repository is organized into the following directories (and subdirectories)
 Stack of phrases that I was looking up:
 + array static variable C++
 + pair array C++
++ "std::pair"  equality operator
 
 
 #	References

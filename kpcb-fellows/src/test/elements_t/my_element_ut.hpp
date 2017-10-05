@@ -78,8 +78,8 @@ class my_element_ut {
 		static void test_my_element_ut();
 
 		/**
-		 * Function to test the standard constructor of the class
-		 *	my_element.
+		 * Function to test the standard constructor and accessor
+		 *	functions of the class my_element.
 		 */
 		static void test_my_element_constructor_and_accessor_functions();
 

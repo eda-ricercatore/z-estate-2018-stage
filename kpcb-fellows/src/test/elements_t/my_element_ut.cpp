@@ -52,9 +52,9 @@
  * Default constructor of the unit test for the class my_element.
  */
 my_element_ut::my_element_ut() {
-	cerr << "==tu	Don't instantiate the tester for my_element";
+	cerr << "==tu	Don't instantiate the tester for my_element.";
 	cerr << endl;
-	string err_msg = "==tu	Don't use my_element_ut's default constructor";
+	string err_msg = "==tu	Don't use my_element_ut's default constructor.";
 	throw new violated_assertion(err_msg);
 }
 
@@ -67,7 +67,7 @@ my_element_ut::my_element_ut() {
  */
 void my_element_ut::test_my_element_ut() {
 	cout << "==tu	Testing: my_element..." << endl;
-	// Test the constructor.
+	// Test the constructor and accessor functions of my_element class.
 	test_my_element_constructor_and_accessor_functions();
 	// Test mutator functions of the my_element class.
 	test_my_element_mutator_functions();
@@ -78,7 +78,8 @@ void my_element_ut::test_my_element_ut() {
 
 
 /**
- * Function to test the constructors of the class my_element.
+ * Function to test the constructors and accessor functions of the
+ *	class my_element.
  * @param - None
  * @return - Nothing
  */

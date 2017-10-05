@@ -70,7 +70,7 @@ class elements_mt {
 
 		// ----------------------------------------------------------
 
-		// Function to test different classes in the Utilities package.
+		// Function to test different classes in the Elements package.
 		static void test_my_element_mt();
 };
 #endif
