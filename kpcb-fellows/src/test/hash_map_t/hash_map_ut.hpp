@@ -44,6 +44,8 @@
 #include "../../utilities/violated_postcondition.hpp"
 
 // Import appropriate header files from the C++ STL
+#include <random>		// For pseudo-random number generation, PRNG.
+
 
 #ifndef __HASH_MAP_UT_H
 #define __HASH_MAP_UT_H

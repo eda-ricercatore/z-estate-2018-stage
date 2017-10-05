@@ -187,4 +187,15 @@ void hash_map_ut::test_hash_map_mutator_functions() {
 	}else{
 		printer::debug_std_err("			NO!!!");
 	}
+	
+	printer::debug_std_op_ln("Generate a random number.");
+	default_random_engine generator;
+	uniform_int_distribution<unsigned long long int> distribution(0,ULLONG_MAX);
+	for(int i=0; i<10; i++) {
+		printer::debug_std_op("Number is:");
+		printer::debug_std_op(to_string(i));
+		printer::debug_std_op(":");
+		printer::debug_std_op(to_string(distribution(generator)));
+		printer::debug_std_op_ln(".");
+	}
 }
