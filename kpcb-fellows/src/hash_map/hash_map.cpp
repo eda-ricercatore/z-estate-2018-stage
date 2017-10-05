@@ -169,12 +169,13 @@ unsigned long long int hash_map::find(string key) {
  * @return - Boolean 'true', if the (key,value) pair is stored in the
  *	hash map. Else, return false.
  */
-bool hash_map::set(string key, my_element value) {
+bool hash_map::set(string key, my_element *value) {
 	if (number_of_pairs < maximum_capacity) {
 		/**
 		 * For each (key,value) pair in the array implementation of
 		 *	a hash map...
 		 */
+//printer::debug_std_op_ln("Not at max capacity.");
 		for(unsigned long long int i=0; i<maximum_capacity; i++) {
 			// Is its key equal to the search key 'key'?
 			if(0 == (psm[i].first).compare(key)) {
@@ -184,6 +185,7 @@ bool hash_map::set(string key, my_element value) {
 				 * (key,value) pair can't be added to the hash map
 				 *	again.
 				 */
+//printer::debug_std_op_ln("(key,value) pair exists in the hash map.");
 				return false;
 			/**
 			 * Else if the key of the pair at the current index is
@@ -195,13 +197,18 @@ bool hash_map::set(string key, my_element value) {
 				 * Add the (key,value) pair to the hash map in this
 				 *	empty space. 
 				 */
+//printer::debug_std_op_ln("Index in array hash map is available.");
 				psm[i].first = key;
-				(*psm[i].second) = value;
+//printer::debug_std_op_ln("Key assigned. Assigning value.");
+				//(*psm[i].second) = value;
+				psm[i].second = value;
 				increment_number_of_pairs();
+//printer::debug_std_op_ln("(key,value) pair has been added.");
 				return true;
 			}
 		}	// Fixed-size hash map is full (at maximum capacity).
 	}
+//printer::debug_std_op_ln("No (key,value) pair added.");
 	// Fixed-size hash map is full (at maximum capacity).
 	return false;
 }

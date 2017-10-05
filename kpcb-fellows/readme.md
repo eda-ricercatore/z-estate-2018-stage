@@ -47,6 +47,8 @@ Design decisions:
 			pairs are added to the hash map.
 		Also, *set(key, value)* shall return false when the *load factor* of the hash
 			map is 1.
+	- The function *delete(key)* is renamed as *delete_pair(key)* because the
+		term *delete* is a special keyword in *C++*.
 
 ## Challenges
 

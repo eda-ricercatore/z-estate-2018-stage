@@ -46,8 +46,8 @@
  * Default constructor of the unit test for the class my_element.
  */
 hash_map_ut::hash_map_ut() {
-	cerr << "==tu	Don't instantiate the tester for hash_map_ut.";
-	cerr << endl;
+	printer::debug_std_err("==tu	Don't instantiate the tester for hash_map_ut.");
+	printer::debug_std_err("");
 	string err_msg = "==tu	Don't use hash_map_ut_ut's default constructor.";
 	throw new violated_assertion(err_msg);
 }
@@ -60,12 +60,12 @@ hash_map_ut::hash_map_ut() {
  * @return - Nothing.
  */
 void hash_map_ut::test_hash_map_ut() {
-	cout << "==tu	Testing: hash_map..." << endl;
+	printer::debug_std_op_ln("==tu	Testing: hash_map...");
 	// Test the constructor.
 	test_hash_map_constructor_and_accessor_functions();
 	// Test mutator functions of the my_element class.
 	test_hash_map_mutator_functions();
-	cout << endl;
+	printer::debug_std_op_ln("");
 }
 
 
@@ -78,22 +78,22 @@ void hash_map_ut::test_hash_map_constructor_and_accessor_functions() {
 	// Check if my_element is instantiated correctly.
 	hash_map *hm = new hash_map();
 	
-	cout << "==tu	>>	Default constructor: maximum capacity = 10?";
+	printer::debug_std_op("==tu	>>	Default constructor: maximum capacity = 10?");
 	printer::num_test_cases_eval();
 	if(10 == hm->get_maximum_capacity()) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	NO!!!" << endl;
+		printer::debug_std_err("	NO!!!");
 	}
 	
-	cout << "==tu	>>	Default constructor: number of pairs = 0?";
+	printer::debug_std_op("==tu	>>	Default constructor: number of pairs = 0?");
 	printer::num_test_cases_eval();
 	if(0 == hm->get_number_of_pairs()) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	NO!!!" << endl;
+		printer::debug_std_err("	NO!!!");
 	}
 
 	// Create a my_element object.
@@ -103,52 +103,52 @@ void hash_map_ut::test_hash_map_constructor_and_accessor_functions() {
 	 * Search for this my_element object in the array implementation
 	 *	of hash_map object.
 	 */
-	cout << "==tu	>>	Empty (*hm) contains my_elem?";
+	printer::debug_std_op("==tu	>>	Empty (*hm) contains my_elem?");
 	printer::num_test_cases_eval();
 	if((NULL == hm->get(my_elem->get_string_hash(my_elem->get_name())))
 		&& (ULLONG_MAX == hm->find(my_elem->get_string_hash(my_elem->get_name())))) {
-		cout << "			Yes." << endl;
+		printer::debug_std_op_ln("			Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	NO!!!" << endl;
+		printer::debug_std_err("	NO!!!");
 	}
 	
-	cout << "==tu	>>	Empty (*hm) has load factor of 0?";
+	printer::debug_std_op("==tu	>>	Empty (*hm) has load factor of 0?");
 	printer::num_test_cases_eval();
 	if(0.0 == hm->load()) {
-		cout << "		Yes." << endl;
+		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	NO!!!" << endl;
+		printer::debug_std_err("	NO!!!");
 	}
 	
-	cout << "==tu	>>	Empty (*hm) has 0 number of (key,value) pairs?";
+	printer::debug_std_op("==tu	>>	Empty (*hm) has 0 number of (key,value) pairs?");
 	printer::num_test_cases_eval();
 	if(0 == hm->get_number_of_pairs()) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	NO!!!" << endl;
+		printer::debug_std_err("	NO!!!");
 	}
 	
-	cout << "==tu	>>	Std constructor's max capacity = 12345001?";
+	printer::debug_std_op("==tu	>>	Std constructor's max capacity = 12345001?");
 	unsigned long long int temp_maximum_capacity = 12345001;
 	hm = new hash_map(temp_maximum_capacity);
 	printer::num_test_cases_eval();
 	if(temp_maximum_capacity == hm->get_maximum_capacity()) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	NO!!!" << endl;
+		printer::debug_std_err("	NO!!!");
 	}
 	
-	cout << "==tu	>>	Standard constructor: number of pairs = 0?";
+	printer::debug_std_op("==tu	>>	Standard constructor: number of pairs = 0?");
 	printer::num_test_cases_eval();
 	if(0 == hm->get_number_of_pairs()) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	NO!!!" << endl;
+		printer::debug_std_err("	NO!!!");
 	}
 }
 
@@ -160,35 +160,31 @@ void hash_map_ut::test_hash_map_constructor_and_accessor_functions() {
  * @return - Nothing
  */
 void hash_map_ut::test_hash_map_mutator_functions() {
-	cout << "" << endl;
-}
-/*
 	// Use default constructor to instantiate my_element.
 	hash_map *hm = new hash_map();
-	// Modify its index number to 23460011.
-	int temp_index_number = 23460011;
-	hm->set_index_number(temp_index_number);
-	cout << "==tu	>>	Is modified index number = 23460011?";
-	printer::num_test_cases_eval();
 	
-	if(temp_index_number == hm->get_index_number()) {
-		cout << "		Yes." << endl;
+	// Create a my_element object.
+	unsigned long long int temp_number = 234237894538;
+	my_element *my_elem = new my_element("Temporary name", temp_number);
+	// Try to delete this my_element object from the empty hash map.
+	my_element *resultant_elem = hm->delete_pair(my_elem->get_me_hash());
+	printer::debug_std_op("==tu	>>	Can't delete (key,value) from empty hash map?");
+	printer::num_test_cases_eval();
+	if(NULL == resultant_elem) {
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "			NO!!!" << endl;
+		printer::debug_std_err("			NO!!!");
 	}
-	
-	// Modify its name to "Ciao Mondo".
-	string temp_name = "Ciao Mondo";
-	hm->set_name(temp_name);
-	cout << "==tu	>>	Is modified name = 23460011?";
+//printer::debug_std_op_ln("Adding pair to empty hash map");
+
+
+	printer::debug_std_op("==tu	>>	Add my_elem to the empty hash map?");
 	printer::num_test_cases_eval();
-	
-	if(temp_name == hm->get_name()) {
-		cout << "			Yes." << endl;
+	if(hm->set(my_elem->get_me_hash(),my_elem)) {
+		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "			NO!!!" << endl;
+		printer::debug_std_err("			NO!!!");
 	}
-*/
- 
+}

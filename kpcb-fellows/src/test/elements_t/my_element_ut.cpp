@@ -52,8 +52,7 @@
  * Default constructor of the unit test for the class my_element.
  */
 my_element_ut::my_element_ut() {
-	cerr << "==tu	Don't instantiate the tester for my_element.";
-	cerr << endl;
+	printer::debug_std_err("==tu	Don't instantiate the tester for my_element.");
 	string err_msg = "==tu	Don't use my_element_ut's default constructor.";
 	throw new violated_assertion(err_msg);
 }
@@ -66,14 +65,14 @@ my_element_ut::my_element_ut() {
  * @return - Nothing.
  */
 void my_element_ut::test_my_element_ut() {
-	cout << "==tu	Testing: my_element..." << endl;
+	printer::debug_std_op_ln("==tu	Testing: my_element...");
 	// Test the constructor and accessor functions of my_element class.
 	test_my_element_constructor_and_accessor_functions();
 	// Test mutator functions of the my_element class.
 	test_my_element_mutator_functions();
 	// Test hash functions of my_element.
 	test_my_element_hash_functions();
-	cout << endl;
+	printer::debug_std_op_ln("");
 }
 
 
@@ -86,36 +85,36 @@ void my_element_ut::test_my_element_ut() {
 void my_element_ut::test_my_element_constructor_and_accessor_functions() {
 	// Check if my_element is instantiated correctly.
 	my_element *my_elem = new my_element();
-	cout << "==tu	>>	Default constructor's index number = UINT_MAX?";
+	printer::debug_std_op("==tu	>>	Default constructor's index number = UINT_MAX?");
 	printer::num_test_cases_eval();
 	
 	if((UINT_MAX == my_elem->get_index_number()) &&
 		(0 == (my_elem->get_name()).compare("Missing Name"))) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
-		cout << "==tu	>>	Default constructor's name = 'Missing Name'?";
-		cout << "	Yes." << endl;
+		printer::debug_std_op("==tu	>>	Default constructor's name = 'Missing Name'?");
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_test_cases_eval();
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	NO!!!" << endl;
+		printer::debug_std_err("	NO!!!");
 	}
 	
 	int temp_index_number = 12345001;
 	string temp_name = "Temporary name";
 	my_elem = new my_element(temp_name, temp_index_number);
-	cout << "==tu	>>	Standard constructor's index number = 12345001?";
+	printer::debug_std_op("==tu	>>	Std constructor's index number = 12345001?");
 	printer::num_test_cases_eval();
 	if((temp_index_number == my_elem->get_index_number()) &&
 		(0 == (my_elem->get_name()).compare(temp_name))) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
-		cout << "==tu	>>	Standard constructor's name = 'Temporary name'?";
-		cout << "	Yes." << endl;
+		printer::debug_std_op("==tu	>>	Std constructor's name = 'Temporary name'?");
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_test_cases_eval();
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	NO!!!" << endl;
+		printer::debug_std_err("	NO!!!");
 	}
 }
 
@@ -133,27 +132,27 @@ void my_element_ut::test_my_element_mutator_functions() {
 	// Modify its index number to 23460011.
 	int temp_index_number = 23460011;
 	my_elem->set_index_number(temp_index_number);
-	cout << "==tu	>>	Is modified index number = 23460011?";
+	printer::debug_std_op("==tu	>>	Is modified index number = 23460011?");
 	printer::num_test_cases_eval();
 	
 	if(temp_index_number == my_elem->get_index_number()) {
-		cout << "		Yes." << endl;
+		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "			NO!!!" << endl;
+		printer::debug_std_err("			NO!!!");
 	}
 	
 	// Modify its name to "Ciao Mondo".
 	string temp_name = "Ciao Mondo";
 	my_elem->set_name(temp_name);
-	cout << "==tu	>>	Is modified name = 23460011?";
+	printer::debug_std_op("==tu	>>	Is modified name = 23460011?");
 	printer::num_test_cases_eval();
 	
 	if(temp_name == my_elem->get_name()) {
-		cout << "			Yes." << endl;
+		printer::debug_std_op_ln("			Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "			NO!!!" << endl;
+		printer::debug_std_err("			NO!!!");
 	}
 }
 
@@ -190,32 +189,32 @@ void my_element_ut::test_my_element_hash_functions() {
 	 *	hashed my_element object) and hash values.
 	 */
  	string hash_value = "3673309267940264664";
-	cout << "==tu	>>	Hash value for temp_str = 3673309267940264664?";
+	printer::debug_std_op("==tu	>>	Hash value for temp_str = 3673309267940264664?");
 	printer::num_test_cases_eval();
 	if(0 == hash_value.compare(my_elem->get_string_hash(temp_str))) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	No." << endl;
+		printer::debug_std_err("	No.");
 	}
 	
 	hash_value = "16166665962899187823";
-	cout << "==tu	>>	Hash value for temp_str = 16166665962899187823?";
+	printer::debug_std_op("==tu	>>	Hash value for temp_str = 16166665962899187823?");
 	printer::num_test_cases_eval();
 	if(0 == hash_value.compare(my_elem->get_name_hash())) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	No." << endl;
+		printer::debug_std_err("	No.");
 	}
 	
 	hash_value = "16166665961317242947";
-	cout << "==tu	>>	Hash value for temp_str = 16166665961317242947?";
+	printer::debug_std_op("==tu	>>	Hash value for temp_str = 16166665961317242947?");
 	printer::num_test_cases_eval();
 	if(0 == hash_value.compare(my_elem->get_me_hash())) {
-		cout << "	Yes." << endl;
+		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
-		cout << "	No." << endl;
+		printer::debug_std_err("	No.");
 	}
 }

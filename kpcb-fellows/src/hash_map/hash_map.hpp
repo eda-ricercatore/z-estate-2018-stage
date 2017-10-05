@@ -117,7 +117,7 @@ class hash_map {
 		// Mutator functions.
 		
 		// Function to add the pair (key, value) to the hash map.
-		bool set(string key, my_element value);
+		bool set(string key, my_element *value);
 		
 		/**
 		 * Function to delete the (key,value) pair associated with
