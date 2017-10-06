@@ -130,7 +130,7 @@ my_element* hash_map::get(string key) {
  */
 float hash_map::load() {
 	// Return the load factor of the fixed-size hash map.
-	return static_cast<float>(get_number_of_pairs()/get_maximum_capacity());
+	return static_cast<float>(get_number_of_pairs())/(static_cast<float>(get_maximum_capacity()));
 }
 
 

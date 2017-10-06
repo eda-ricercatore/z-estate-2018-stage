@@ -188,15 +188,22 @@ void hash_map_ut::test_hash_map_mutator_functions() {
 	if(hm->set(my_elem->get_me_hash(),my_elem)) {
 		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
-//		my_elem_vec.push_back(my_elem);
 		my_elem_vec->push_back(my_elem);
-//		(*my_elem_vec) = my_elem;
-		//(*my_elem_vec)->push_back(my_elem);	// No compile
-		//my_elem_vec.push_back(my_elem);		// No compile
-		//my_elem_vec->push_back(my_elem);		// seg fault
-		//(*my_elem_vec).push_back(my_elem);	// seg fault
 	}else{
 		printer::debug_std_err("			NO!!!");
+	}
+	
+	printer::debug_std_op("==tu	>>	load() == expected load factor of 0.1?");
+	printer::num_test_cases_eval();
+	float expected_load = 0.10;
+	if(expected_load == hm->load()) {
+		printer::debug_std_op_ln("		Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_err("		NO!!!");
+		printer::debug_std_err(to_string(hm->get_number_of_pairs()));
+		printer::debug_std_err(to_string(hm->get_maximum_capacity()));
+		printer::debug_std_err(to_string(hm->load()));
 	}
 	
 //	printer::debug_std_op_ln("Generate a random number.");
@@ -218,14 +225,14 @@ void hash_map_ut::test_hash_map_mutator_functions() {
 		// Get the hash key for the new instance of my_element.
 		printer::debug_std_op("==tu	>>	Added number of (key,value) pairs:");
 		printer::num_test_cases_eval();
-		printer::debug_std_op(to_string(i));
-		printer::debug_std_op(":");
+		printer::debug_std_op(to_string(i+2));
+		printer::debug_std_op("?");
 		//printer::debug_std_op(to_string(distribution(generator)));
 		//printer::debug_std_op("=");
 		//printer::debug_std_op(my_elem_names[i]);
 		//printer::debug_std_op_ln(".");
 		temp_number = distribution(generator);
-		my_elem = new my_element(my_elem_names[i], temp_number);
+		my_elem = new my_element(my_elem_names[i+1], temp_number);
 		if(hm->set(my_elem->get_me_hash(),my_elem)) {
 			printer::debug_std_op_ln("		Yes.");
 			printer::num_passed_test_cases_eval();
@@ -233,7 +240,41 @@ void hash_map_ut::test_hash_map_mutator_functions() {
 		}else{
 			printer::debug_std_err("			NO!!!");
 		}
+		
+		printer::debug_std_op("==tu	>>	load() == expected load factor of ");
+		expected_load = static_cast<float>(my_elem_vec->size())/static_cast<float>(hm->get_maximum_capacity());
+		printer::debug_std_op(to_string(expected_load));
+		printer::debug_std_op("?");
+		printer::num_test_cases_eval();
+//		expected_load = expected_load + static_cast<float>(0.10);
+		int fudge_factor = 2;
+		if(fabs(expected_load - hm->load()) < numeric_limits<float>::epsilon()*fudge_factor) {
+			printer::debug_std_op_ln("	Yes.");
+			printer::num_passed_test_cases_eval();
+		}else{
+			printer::debug_std_err("	NO!!!");
+			printer::debug_std_err(to_string(hm->get_number_of_pairs()));
+			printer::debug_std_err(to_string(hm->get_maximum_capacity()));
+			printer::debug_std_err(to_string(hm->load()));
+			printer::debug_std_err(to_string(expected_load));
+			printer::debug_std_err(to_string(my_elem_vec->size()));
+		}
 	}
+	printer::debug_std_op("==tu	>>	Cannot add another (key,value) pair?");
+	printer::num_test_cases_eval();
+	temp_number = distribution(generator);
+	my_elem = new my_element("Not to be added", temp_number);
+	if(hm->set(my_elem->get_me_hash(),my_elem)) {
+		printer::debug_std_op_ln("		No!!!.");
+		my_elem_vec->push_back(my_elem);
+	}else{
+		printer::debug_std_err("		Yes.");
+		printer::num_passed_test_cases_eval();
+	}
+	// Try to retrieve some my_element objects.
 	
-	
+	// Memory cleanup.
+	delete resultant_elem;
+	delete my_elem;
+	delete my_elem_vec;
 }

@@ -45,7 +45,8 @@
 
 // Import appropriate header files from the C++ STL
 #include <random>		// For pseudo-random number generation, PRNG.
-
+#include <cmath>		// For comparing floats.
+#include <limits>		// For comparing floats.
 
 #ifndef __HASH_MAP_UT_H
 #define __HASH_MAP_UT_H
