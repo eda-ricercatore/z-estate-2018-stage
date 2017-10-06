@@ -163,9 +163,13 @@ void hash_map_ut::test_hash_map_mutator_functions() {
 	// Use default constructor to instantiate my_element.
 	hash_map *hm = new hash_map();
 	
+	// Vector containing copies of my_element objects.
+//	vector<my_element*> my_elem_vec;
+	vector<my_element*> *my_elem_vec = new vector<my_element*>();
+	
 	// Create a my_element object.
 	unsigned long long int temp_number = 234237894538;
-	my_element *my_elem = new my_element("Temporary name", temp_number);
+	my_element *my_elem = new my_element("Element One", temp_number);
 	// Try to delete this my_element object from the empty hash map.
 	my_element *resultant_elem = hm->delete_pair(my_elem->get_me_hash());
 	printer::debug_std_op("==tu	>>	Can't delete (key,value) from empty hash map?");
@@ -184,18 +188,52 @@ void hash_map_ut::test_hash_map_mutator_functions() {
 	if(hm->set(my_elem->get_me_hash(),my_elem)) {
 		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
+//		my_elem_vec.push_back(my_elem);
+		my_elem_vec->push_back(my_elem);
+//		(*my_elem_vec) = my_elem;
+		//(*my_elem_vec)->push_back(my_elem);	// No compile
+		//my_elem_vec.push_back(my_elem);		// No compile
+		//my_elem_vec->push_back(my_elem);		// seg fault
+		//(*my_elem_vec).push_back(my_elem);	// seg fault
 	}else{
 		printer::debug_std_err("			NO!!!");
 	}
 	
-	printer::debug_std_op_ln("Generate a random number.");
+//	printer::debug_std_op_ln("Generate a random number.");
+
+	// Container of names for my_elements to be added to the hash map.
+	vector<string> my_elem_names = {"Element Two", "Element Three", "Element Four", "Element Five", "Element Six", "Element Seven", "Element Eight", "Element Nine", "Element Ten"};
+	// Instantiate a PRNG.
 	default_random_engine generator;
+	/**
+	 * Instantiate PRNG for integers, based on a uniform distribution,
+	 *	for the range from 0 to ULLONG_MAX.
+	 */ 
 	uniform_int_distribution<unsigned long long int> distribution(0,ULLONG_MAX);
-	for(int i=0; i<10; i++) {
-		printer::debug_std_op("Number is:");
+	/**
+	 * For the remaining free spaces in the array implementation of
+	 *	the hash map... (10-1) = 9 empty spaces...
+	 */
+	for(int i=0; i<(hm->get_maximum_capacity()-1); i++) {
+		// Get the hash key for the new instance of my_element.
+		printer::debug_std_op("==tu	>>	Added number of (key,value) pairs:");
+		printer::num_test_cases_eval();
 		printer::debug_std_op(to_string(i));
 		printer::debug_std_op(":");
-		printer::debug_std_op(to_string(distribution(generator)));
-		printer::debug_std_op_ln(".");
+		//printer::debug_std_op(to_string(distribution(generator)));
+		//printer::debug_std_op("=");
+		//printer::debug_std_op(my_elem_names[i]);
+		//printer::debug_std_op_ln(".");
+		temp_number = distribution(generator);
+		my_elem = new my_element(my_elem_names[i], temp_number);
+		if(hm->set(my_elem->get_me_hash(),my_elem)) {
+			printer::debug_std_op_ln("		Yes.");
+			printer::num_passed_test_cases_eval();
+			my_elem_vec->push_back(my_elem);
+		}else{
+			printer::debug_std_err("			NO!!!");
+		}
 	}
+	
+	
 }

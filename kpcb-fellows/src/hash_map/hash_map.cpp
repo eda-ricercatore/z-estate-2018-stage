@@ -252,10 +252,6 @@ my_element* hash_map::delete_pair(string key) {
 }
 
 
-// -------------------------------------------------------
-		
-// Private functions...
-
 /**
  * Function to get the number of items or (key,value) pairs
  *	in the hash map.
@@ -286,6 +282,10 @@ unsigned long long int hash_map::get_maximum_capacity() {
 
 	return maximum_capacity;
 }
+
+// -------------------------------------------------------
+		
+// Private functions...
 
 
 /**
