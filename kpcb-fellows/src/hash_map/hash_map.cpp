@@ -283,6 +283,7 @@ unsigned long long int hash_map::get_maximum_capacity() {
 	return maximum_capacity;
 }
 
+
 // -------------------------------------------------------
 		
 // Private functions...

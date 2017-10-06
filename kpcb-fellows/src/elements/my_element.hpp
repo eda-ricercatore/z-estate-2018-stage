@@ -103,6 +103,13 @@ class my_element {
 		
 		// Function to hash this my_element object.
 		string get_me_hash();
+		
+		// -----------------------------------------------------
+		
+		// Comparison functions.
+		
+		// Function to compare itself to another my_element object.
+		bool compare_my_element_objects(my_element *obj);
 	
 	// =========================================================
 	

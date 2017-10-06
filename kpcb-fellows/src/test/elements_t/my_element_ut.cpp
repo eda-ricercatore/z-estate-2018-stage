@@ -72,6 +72,8 @@ void my_element_ut::test_my_element_ut() {
 	test_my_element_mutator_functions();
 	// Test hash functions of my_element.
 	test_my_element_hash_functions();
+	// Test comparison function of my_element.
+	test_my_element_comparison_function();
 	printer::debug_std_op_ln("");
 }
 
@@ -216,5 +218,60 @@ void my_element_ut::test_my_element_hash_functions() {
 		printer::num_passed_test_cases_eval();
 	}else{
 		printer::debug_std_err("	No.");
+	}
+}
+
+
+
+
+
+/**
+ * Function to test the comparison function of my_element.
+ * @param - None
+ * @return - Nothing
+ */
+void my_element_ut::test_my_element_comparison_function() {
+	string temp_str = "Tu che abiti al riparo dell'Altissimo e dimori all'ombra dell'Onnipotente,";
+	string t_name = "Il Signore è il mio pastore: non manco di nulla;";
+	int t_index_number = 836491286;
+
+	my_element *my_elem1 = new my_element(t_name,t_index_number);
+	my_element *my_elem2 = new my_element(t_name,t_index_number);
+	my_element *my_elem3 = new my_element(temp_str,435433256);
+	
+	printer::debug_std_op("==tu	>>	my_elem1 == my_elem2?");
+	printer::num_test_cases_eval();
+	if(my_elem1->compare_my_element_objects(my_elem2)) {
+		printer::debug_std_op_ln("				Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_err("				No.");
+	}
+	
+	printer::debug_std_op("==tu	>>	my_elem1 & my_elem2 have different references?");
+	printer::num_test_cases_eval();
+	if(my_elem1 != my_elem2) {
+		printer::debug_std_op_ln("	Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_err("	No.");
+	}
+	
+	printer::debug_std_op("==tu	>>	my_elem1 != my_elem3?");
+	printer::num_test_cases_eval();
+	if(my_elem1->compare_my_element_objects(my_elem3)) {
+		printer::debug_std_err("				No.");
+	}else{
+		printer::debug_std_op_ln("				Yes.");
+		printer::num_passed_test_cases_eval();
+	}
+	
+	printer::debug_std_op("==tu	>>	my_elem2 != my_elem3?");
+	printer::num_test_cases_eval();
+	if(my_elem2->compare_my_element_objects(my_elem3)) {
+		printer::debug_std_err("				No.");
+	}else{
+		printer::debug_std_op_ln("				Yes.");
+		printer::num_passed_test_cases_eval();
 	}
 }

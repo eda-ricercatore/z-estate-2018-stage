@@ -150,6 +150,17 @@ void hash_map_ut::test_hash_map_constructor_and_accessor_functions() {
 	}else{
 		printer::debug_std_err("	NO!!!");
 	}
+	
+	temp_maximum_capacity = ULLONG_MAX;
+	try{
+		hm = new hash_map(temp_maximum_capacity);
+		printer::debug_std_op_ln("		This should not be printed.");
+	}catch(violated_assertion *err) {
+		printer::debug_std_op("==tu	>>	Std constructor's max capacity < ULLONG_MAX?");
+		printer::num_test_cases_eval();
+		printer::debug_std_op_ln("	Yes.");
+		printer::num_passed_test_cases_eval();
+	}
 }
 
 
@@ -271,10 +282,65 @@ void hash_map_ut::test_hash_map_mutator_functions() {
 		printer::debug_std_err("		Yes.");
 		printer::num_passed_test_cases_eval();
 	}
-	// Try to retrieve some my_element objects.
+	// Try to find some my_element objects.
+
+	printer::debug_std_op("==tu	>>	Find my_elem_vec[3]?");
+	printer::num_test_cases_eval();
+	//my_elem = hm->get((*my_elem_vec[4])->get_me_hash());
+	//my_elem = hm->get(my_elem_vec[4]->get_me_hash());
+//	my_element *my_elem_rhs = (*my_elem_vec)[4];
+	my_elem = hm->get((*my_elem_vec)[4]->get_me_hash());
+//	if(my_elem->compare_my_element_objects(my_elem_rhs)) {
+	if(my_elem->compare_my_element_objects((*my_elem_vec)[4])) {
+		printer::debug_std_err("				Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_op_ln("				No!!!.");
+	}
+	
+	printer::debug_std_op("==tu	>>	Find my_elem_vec[8]?");
+	printer::num_test_cases_eval();
+	my_elem = hm->get((*my_elem_vec)[8]->get_me_hash());
+	if(my_elem->compare_my_element_objects((*my_elem_vec)[8])) {
+		printer::debug_std_err("				Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_op_ln("				No!!!.");
+	}
+	
+	printer::debug_std_op("==tu	>>	Index of my_elem_vec[5] == 5?");
+	printer::num_test_cases_eval();
+	unsigned long long int index_my_elem = hm->find((*my_elem_vec)[5]->get_me_hash());
+	if(5 == index_my_elem) {
+		printer::debug_std_err("			Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_op_ln("			No!!!.");
+	}
+	
+	// Try to delete some my_element objects.
+	printer::debug_std_op("==tu	>>	Delete my_elem_vec[5]?");
+	printer::num_test_cases_eval();
+	my_elem = hm->delete_pair((*my_elem_vec)[5]->get_me_hash());
+	if((my_elem->compare_my_element_objects((*my_elem_vec)[5])) && (ULLONG_MAX == hm->find((*my_elem_vec)[5]->get_me_hash()))) {
+		printer::debug_std_err("				Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_op_ln("				No!!!.");
+	}
+	
+	printer::debug_std_op("==tu	>>	Delete my_elem_vec[2]?");
+	printer::num_test_cases_eval();
+	my_elem = hm->delete_pair((*my_elem_vec)[2]->get_me_hash());
+	if((my_elem->compare_my_element_objects((*my_elem_vec)[2])) && (ULLONG_MAX == hm->find((*my_elem_vec)[2]->get_me_hash()))) {
+		printer::debug_std_err("				Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_op_ln("				No!!!.");
+	}
 	
 	// Memory cleanup.
 	delete resultant_elem;
-	delete my_elem;
+//	delete my_elem;
 	delete my_elem_vec;
 }

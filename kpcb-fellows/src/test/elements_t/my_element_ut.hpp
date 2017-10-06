@@ -94,6 +94,11 @@ class my_element_ut {
 		 *	objects (i.e., instances varaibles) of my_element.  
 		 */
 		static void test_my_element_hash_functions();
+		
+		/**
+		 * Function to test the comparison function.  
+		 */
+		static void test_my_element_comparison_function();
 };
 #endif
 
