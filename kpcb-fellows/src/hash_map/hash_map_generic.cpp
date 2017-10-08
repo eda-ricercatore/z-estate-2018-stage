@@ -48,12 +48,13 @@ using namespace std;
 /**
  * * Shortcut to a dynamic array of (key, value) pairs.
  */
-typedef pair<string, T*> *pair_str_t;
+//typedef pair<string, T*> *pair_str_t;
 
 // =========================================================
 
 // Default constructor.
-hash_map_generic::hash_map_generic() {
+template <class T>
+hash_map_generic<T>::hash_map_generic() {
 	/**
 	 * Choose the default size of the fixed-size hash map to be 10,
 	 *	so that it is small enough to be tested exhaustively.
@@ -73,20 +74,22 @@ hash_map_generic::hash_map_generic() {
  *	Else, it is difficult to determine if the fixed-size hash map is
  *		full (at maximum capacity).
  */
-hash_map_generic::hash_map_generic(unsigned long long int size) {
+template <class T>
+hash_map_generic<T>::hash_map_generic(unsigned long long int size) {
 	if(ULLONG_MAX == size) {
 		throw new violated_assertion("size < ULLONG_MAX is required.");
 	}
 	maximum_capacity = size;
 	number_of_pairs = 0;
-	psm = new pair<string, my_element*>[maximum_capacity];
+	psm = new pair<string, T*>[maximum_capacity];
 	//pair_str_myelement = new pair<string, my_element>[maximum_capacity];
 	//pair_str_myelement = pair<string, my_element>[maximum_capacity];
 }
 
 
 // Default destructor.
-hash_map_generic::hash_map_generic() {
+template <class T>
+hash_map_generic<T>::~hash_map_generic() {
 	printer::debug_std_op_ln("	Call destructor for hash_map_generic.");
 }
 
@@ -103,6 +106,7 @@ hash_map_generic::hash_map_generic() {
  *	implementation of the hash map, return the value corresponding
  *	to the key 'key'. Else, return null.
  */
+template <class T>
 T* hash_map_generic<T>::get(string key) {
 	/**
 	 * For each (key,value) pair in the array implementation of a
@@ -115,7 +119,7 @@ T* hash_map_generic<T>::get(string key) {
 			 * Yes. (key,value) pair is found in the hash map.
 			 * Return the 'value' for this (key,value) pair.
 			 */
-		 	my_element *temp = psm[i].second; 
+		 	T *temp = psm[i].second; 
 		 	return temp;
 		}
 	}
@@ -128,6 +132,7 @@ T* hash_map_generic<T>::get(string key) {
  * @param - None.
  * @return - Load factor of the fixed-size hash map.
  */
+template <class T>
 float hash_map_generic<T>::load() {
 	// Return the load factor of the fixed-size hash map.
 	return static_cast<float>(get_number_of_pairs())/(static_cast<float>(get_maximum_capacity()));
@@ -140,6 +145,7 @@ float hash_map_generic<T>::load() {
  * If the key 'key' cannot be found in the array, return ULLONG_MAX.
  *	 
  */
+template <class T>
 unsigned long long int hash_map_generic<T>::find(string key) {
 	/**
 	 * For each (key,value) pair in the array implementation of a
@@ -169,7 +175,8 @@ unsigned long long int hash_map_generic<T>::find(string key) {
  * @return - Boolean 'true', if the (key,value) pair is stored in the
  *	hash map. Else, return false.
  */
-bool hash_map_generic<T>::set(string key, my_element *value) {
+template <class T>
+bool hash_map_generic<T>::set(string key, T *value) {
 	if (number_of_pairs < maximum_capacity) {
 		/**
 		 * For each (key,value) pair in the array implementation of
@@ -226,7 +233,8 @@ bool hash_map_generic<T>::set(string key, my_element *value) {
  * @return - If the delete operation is successfully carried out,
  *	return the value 'value' of (key,value) pair. Else, return null.
  */
-my_element* hash_map_generic<T>::delete_pair(string key) {
+template <class T>
+T* hash_map_generic<T>::delete_pair(string key) {
 	/**
 	 * For each (key,value) pair in the array implementation of
 	 *	a hash map...
@@ -239,7 +247,7 @@ my_element* hash_map_generic<T>::delete_pair(string key) {
 			 * Temporary store 'value', and delete the pair from the
 			 *	hash map.
 			 */
-		 	my_element *temp_elem = psm[i].second;
+		 	T *temp_elem = psm[i].second;
 		 	// Set the key of the (key,value) pair to an empty string.
 			psm[i].first = "";
 			//psm[i].second = NULL;
@@ -260,6 +268,7 @@ my_element* hash_map_generic<T>::delete_pair(string key) {
  *	hash map.
  * @assertion - (number_of_pairs <= maximum_capacity) must be true.
  */
+template <class T>
 unsigned long long int hash_map_generic<T>::get_number_of_pairs() {
 	if (number_of_pairs > maximum_capacity) {
 		throw new violated_assertion("Maximum capacity exceeded.");
@@ -275,6 +284,7 @@ unsigned long long int hash_map_generic<T>::get_number_of_pairs() {
  * @return - The maximum capacity of the hash map.
  * @assertion - (number_of_pairs <= maximum_capacity) must be true.
  */
+template <class T>
 unsigned long long int hash_map_generic<T>::get_maximum_capacity() {
 	if (number_of_pairs > maximum_capacity) {
 		throw new violated_assertion("number_of_pairs > maximum_capacity. Accessor.");
@@ -299,6 +309,7 @@ unsigned long long int hash_map_generic<T>::get_maximum_capacity() {
  * @postcondition - Thrown, if maximum capacity of the hash map has
  *	been exceeded.
  */
+template <class T>
 void hash_map_generic<T>::increment_number_of_pairs() {
 	// Is there any empty space in the fied-size hash map?
 	if (number_of_pairs < maximum_capacity) {

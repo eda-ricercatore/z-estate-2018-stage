@@ -66,7 +66,7 @@ using namespace std;
 /**
  * Shortcut to a dynamic array of (key, value) pairs.
  */
-typedef pair<string, T*> *pair_str_t;
+//typedef pair<string, T*> *pair_str_t;
 
 // =========================================================
 
@@ -144,7 +144,8 @@ class hash_map_generic {
 		unsigned long long int number_of_pairs;
 		
 		// Array of pair_str_t, pair<string, my_element>.
-		pair_str_t psm;
+		//pair_str_t psm;
+		pair<string, T*> psm;
 
 		// -------------------------------------------------------
 		
