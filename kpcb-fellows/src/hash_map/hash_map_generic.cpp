@@ -162,6 +162,41 @@ unsigned long long int hash_map_generic<T>::find(string key) {
 	return ULLONG_MAX;
 }
 
+
+
+/**
+ * Function to get the number of items or (key,value) pairs
+ *	in the hash map.
+ * @param - None.
+ * @return - The number of items or (key,value) pairs in the
+ *	hash map.
+ * @assertion - (number_of_pairs <= maximum_capacity) must be true.
+ */
+template <class T>
+unsigned long long int hash_map_generic<T>::get_number_of_pairs() {
+	if (number_of_pairs > maximum_capacity) {
+		throw new violated_assertion("Maximum capacity exceeded.");
+	}
+
+	return number_of_pairs;
+}
+
+
+/**
+ * Function to get the maximum capacity of the hash map.
+ * @param - None.
+ * @return - The maximum capacity of the hash map.
+ * @assertion - (number_of_pairs <= maximum_capacity) must be true.
+ */
+template <class T>
+unsigned long long int hash_map_generic<T>::get_maximum_capacity() {
+	if (number_of_pairs > maximum_capacity) {
+		throw new violated_assertion("number_of_pairs > maximum_capacity. Accessor.");
+	}
+
+	return maximum_capacity;
+}
+
 // -----------------------------------------------------
 
 // Mutator functions.
@@ -260,38 +295,6 @@ T* hash_map_generic<T>::delete_pair(string key) {
 }
 
 
-/**
- * Function to get the number of items or (key,value) pairs
- *	in the hash map.
- * @param - None.
- * @return - The number of items or (key,value) pairs in the
- *	hash map.
- * @assertion - (number_of_pairs <= maximum_capacity) must be true.
- */
-template <class T>
-unsigned long long int hash_map_generic<T>::get_number_of_pairs() {
-	if (number_of_pairs > maximum_capacity) {
-		throw new violated_assertion("Maximum capacity exceeded.");
-	}
-
-	return number_of_pairs;
-}
-
-
-/**
- * Function to get the maximum capacity of the hash map.
- * @param - None.
- * @return - The maximum capacity of the hash map.
- * @assertion - (number_of_pairs <= maximum_capacity) must be true.
- */
-template <class T>
-unsigned long long int hash_map_generic<T>::get_maximum_capacity() {
-	if (number_of_pairs > maximum_capacity) {
-		throw new violated_assertion("number_of_pairs > maximum_capacity. Accessor.");
-	}
-
-	return maximum_capacity;
-}
 
 
 // -------------------------------------------------------

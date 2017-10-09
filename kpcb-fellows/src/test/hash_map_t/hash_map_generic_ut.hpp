@@ -36,7 +36,9 @@
 // Import Header files from the other modules of the software.
 // Hash_map module
 //#include "../../../hash_map/hash_map.hpp"
-#include "../../hash_map/hash_map.hpp"
+#include "../../hash_map/hash_map_generic.hpp"
+// Elements module
+#include "../../elements/my_element.hpp"
 // Utilities module
 #include "../../utilities/printer.hpp"
 #include "../../utilities/violated_assertion.hpp"
@@ -77,13 +79,13 @@ class hash_map_generic_ut {
 		 * Function to test the standard constructor of the class
 		 *	hash_map, and its accessor functions.
 		 */
-		static void test_hash_map_constructor_and_accessor_functions();
+		static void test_hash_map_generic_constructor_and_accessor_functions();
 
 		/**
 		 * Function to test the mutator functions regarding the
 		 *	the number of items, or (key,value) pairs, of a
 		 *	hash_map object.
 		 */
-		static void test_hash_map_mutator_functions();
+		static void test_hash_map_generic_mutator_functions();
 };
 #endif

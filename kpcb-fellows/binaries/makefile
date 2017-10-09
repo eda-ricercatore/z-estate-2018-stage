@@ -158,7 +158,7 @@ test:
 	@echo === Test Directory
 	$(GPLUSPLUS)	$(CPP14)	$(COMPILE)	$(TESTPATH)$(SOURCE)
 	@echo === Link the C++ object files...
-	$(GPLUSPLUS)	$(CPP14)	$(LINK)		$(EXECUTABLE)	$(OBJFILES)
+	$(GPLUSPLUS)	$(CPP14)	$$(COMPILATIONSTEPS)	$(LINK)		$(EXECUTABLE)	$(OBJFILES)
 	@echo === Executing the software...
 	$(TIME) $(EXECUTABLE) $(BENCHMARKS)$(STACK1)	$(OPRESULTS)
 	@echo

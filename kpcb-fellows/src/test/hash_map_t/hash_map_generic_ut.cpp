@@ -62,9 +62,9 @@ hash_map_generic_ut::hash_map_generic_ut() {
 void hash_map_generic_ut::test_hash_map_generic_ut() {
 	printer::debug_std_op_ln("==tu	Testing: hash_map...");
 	// Test the constructor.
-	test_hash_map_constructor_and_accessor_functions();
+	test_hash_map_generic_constructor_and_accessor_functions();
 	// Test mutator functions of the my_element class.
-	test_hash_map_mutator_functions();
+	test_hash_map_generic_mutator_functions();
 	printer::debug_std_op_ln("");
 }
 
@@ -74,13 +74,13 @@ void hash_map_generic_ut::test_hash_map_generic_ut() {
  * @param - None
  * @return - Nothing
  */
-void hash_map_generic_ut::test_hash_map_constructor_and_accessor_functions() {
+void hash_map_generic_ut::test_hash_map_generic_constructor_and_accessor_functions() {
 	// Check if my_element is instantiated correctly.
-	hash_map *hm = new hash_map();
+	hash_map_generic<my_element*> *hmg = new hash_map_generic<my_element*>();
 	
 	printer::debug_std_op("==tu	>>	Default constructor: maximum capacity = 10?");
 	printer::num_test_cases_eval();
-	if(10 == hm->get_maximum_capacity()) {
+	if(10 == hmg->get_maximum_capacity()) {
 		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -89,7 +89,7 @@ void hash_map_generic_ut::test_hash_map_constructor_and_accessor_functions() {
 	
 	printer::debug_std_op("==tu	>>	Default constructor: number of pairs = 0?");
 	printer::num_test_cases_eval();
-	if(0 == hm->get_number_of_pairs()) {
+	if(0 == hmg->get_number_of_pairs()) {
 		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -103,28 +103,28 @@ void hash_map_generic_ut::test_hash_map_constructor_and_accessor_functions() {
 	 * Search for this my_element object in the array implementation
 	 *	of hash_map object.
 	 */
-	printer::debug_std_op("==tu	>>	Empty (*hm) contains my_elem?");
+	printer::debug_std_op("==tu	>>	Empty (*hmg) contains my_elem?");
 	printer::num_test_cases_eval();
-	if((NULL == hm->get(my_elem->get_string_hash(my_elem->get_name())))
-		&& (ULLONG_MAX == hm->find(my_elem->get_string_hash(my_elem->get_name())))) {
+	if((NULL == hmg->get(my_elem->get_string_hash(my_elem->get_name())))
+		&& (ULLONG_MAX == hmg->find(my_elem->get_string_hash(my_elem->get_name())))) {
 		printer::debug_std_op_ln("			Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
 		printer::debug_std_err("	NO!!!");
 	}
 	
-	printer::debug_std_op("==tu	>>	Empty (*hm) has load factor of 0?");
+	printer::debug_std_op("==tu	>>	Empty (*hmg) has load factor of 0?");
 	printer::num_test_cases_eval();
-	if(0.0 == hm->load()) {
+	if(0.0 == hmg->load()) {
 		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
 		printer::debug_std_err("	NO!!!");
 	}
 	
-	printer::debug_std_op("==tu	>>	Empty (*hm) has 0 number of (key,value) pairs?");
+	printer::debug_std_op("==tu	>>	Empty (*hmg) has 0 number of (key,value) pairs?");
 	printer::num_test_cases_eval();
-	if(0 == hm->get_number_of_pairs()) {
+	if(0 == hmg->get_number_of_pairs()) {
 		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -133,9 +133,9 @@ void hash_map_generic_ut::test_hash_map_constructor_and_accessor_functions() {
 	
 	printer::debug_std_op("==tu	>>	Std constructor's max capacity = 12345001?");
 	unsigned long long int temp_maximum_capacity = 12345001;
-	hm = new hash_map(temp_maximum_capacity);
+	hmg = new hash_map_generic<my_element*>(temp_maximum_capacity);
 	printer::num_test_cases_eval();
-	if(temp_maximum_capacity == hm->get_maximum_capacity()) {
+	if(temp_maximum_capacity == hmg->get_maximum_capacity()) {
 		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -144,7 +144,7 @@ void hash_map_generic_ut::test_hash_map_constructor_and_accessor_functions() {
 	
 	printer::debug_std_op("==tu	>>	Standard constructor: number of pairs = 0?");
 	printer::num_test_cases_eval();
-	if(0 == hm->get_number_of_pairs()) {
+	if(0 == hmg->get_number_of_pairs()) {
 		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -153,7 +153,7 @@ void hash_map_generic_ut::test_hash_map_constructor_and_accessor_functions() {
 	
 	temp_maximum_capacity = ULLONG_MAX;
 	try{
-		hm = new hash_map(temp_maximum_capacity);
+		hmg = new hash_map_generic<my_element*>(temp_maximum_capacity);
 		printer::debug_std_op_ln("		This should not be printed.");
 	}catch(violated_assertion *err) {
 		printer::debug_std_op("==tu	>>	Std constructor's max capacity < ULLONG_MAX?");
@@ -170,9 +170,9 @@ void hash_map_generic_ut::test_hash_map_constructor_and_accessor_functions() {
  * @param - None
  * @return - Nothing
  */
-void hash_map_generic_ut::test_hash_map_mutator_functions() {
+void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	// Use default constructor to instantiate my_element.
-	hash_map *hm = new hash_map();
+	hash_map_generic<my_element*> *hmg = new hash_map_generic<my_element*>();
 	
 	// Vector containing copies of my_element objects.
 //	vector<my_element*> my_elem_vec;
@@ -182,7 +182,11 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 	unsigned long long int temp_number = 234237894538;
 	my_element *my_elem = new my_element("Element One", temp_number);
 	// Try to delete this my_element object from the empty hash map.
-	my_element *resultant_elem = hm->delete_pair(my_elem->get_me_hash());
+//	my_element *resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
+	my_element *resultant_elem;
+	resultant_elem = static_cast<my_element*>(*hmg->delete_pair(my_elem->get_me_hash()));
+//	resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
+//	(**resultant_elem) = hmg->delete_pair(my_elem->get_me_hash());
 	printer::debug_std_op("==tu	>>	Can't delete (key,value) from empty hash map?");
 	printer::num_test_cases_eval();
 	if(NULL == resultant_elem) {
@@ -196,7 +200,7 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 
 	printer::debug_std_op("==tu	>>	Add my_elem to the empty hash map?");
 	printer::num_test_cases_eval();
-	if(hm->set(my_elem->get_me_hash(),my_elem)) {
+	if(hmg->set(my_elem->get_me_hash(),my_elem)) {
 		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
 		my_elem_vec->push_back(my_elem);
@@ -207,14 +211,14 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 	printer::debug_std_op("==tu	>>	load() == expected load factor of 0.1?");
 	printer::num_test_cases_eval();
 	float expected_load = 0.10;
-	if(expected_load == hm->load()) {
+	if(expected_load == hmg->load()) {
 		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
 		printer::debug_std_err("		NO!!!");
-		printer::debug_std_err(to_string(hm->get_number_of_pairs()));
-		printer::debug_std_err(to_string(hm->get_maximum_capacity()));
-		printer::debug_std_err(to_string(hm->load()));
+		printer::debug_std_err(to_string(hmg->get_number_of_pairs()));
+		printer::debug_std_err(to_string(hmg->get_maximum_capacity()));
+		printer::debug_std_err(to_string(hmg->load()));
 	}
 	
 //	printer::debug_std_op_ln("Generate a random number.");
@@ -232,7 +236,7 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 	 * For the remaining free spaces in the array implementation of
 	 *	the hash map... (10-1) = 9 empty spaces...
 	 */
-	for(int i=0; i<(hm->get_maximum_capacity()-1); i++) {
+	for(int i=0; i<(hmg->get_maximum_capacity()-1); i++) {
 		// Get the hash key for the new instance of my_element.
 		printer::debug_std_op("==tu	>>	Added number of (key,value) pairs:");
 		printer::num_test_cases_eval();
@@ -244,7 +248,7 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 		//printer::debug_std_op_ln(".");
 		temp_number = distribution(generator);
 		my_elem = new my_element(my_elem_names[i+1], temp_number);
-		if(hm->set(my_elem->get_me_hash(),my_elem)) {
+		if(hmg->set(my_elem->get_me_hash(),my_elem)) {
 			printer::debug_std_op_ln("		Yes.");
 			printer::num_passed_test_cases_eval();
 			my_elem_vec->push_back(my_elem);
@@ -253,20 +257,20 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 		}
 		
 		printer::debug_std_op("==tu	>>	load() == expected load factor of ");
-		expected_load = static_cast<float>(my_elem_vec->size())/static_cast<float>(hm->get_maximum_capacity());
+		expected_load = static_cast<float>(my_elem_vec->size())/static_cast<float>(hmg->get_maximum_capacity());
 		printer::debug_std_op(to_string(expected_load));
 		printer::debug_std_op("?");
 		printer::num_test_cases_eval();
 //		expected_load = expected_load + static_cast<float>(0.10);
 		int fudge_factor = 2;
-		if(fabs(expected_load - hm->load()) < numeric_limits<float>::epsilon()*fudge_factor) {
+		if(fabs(expected_load - hmg->load()) < numeric_limits<float>::epsilon()*fudge_factor) {
 			printer::debug_std_op_ln("	Yes.");
 			printer::num_passed_test_cases_eval();
 		}else{
 			printer::debug_std_err("	NO!!!");
-			printer::debug_std_err(to_string(hm->get_number_of_pairs()));
-			printer::debug_std_err(to_string(hm->get_maximum_capacity()));
-			printer::debug_std_err(to_string(hm->load()));
+			printer::debug_std_err(to_string(hmg->get_number_of_pairs()));
+			printer::debug_std_err(to_string(hmg->get_maximum_capacity()));
+			printer::debug_std_err(to_string(hmg->load()));
 			printer::debug_std_err(to_string(expected_load));
 			printer::debug_std_err(to_string(my_elem_vec->size()));
 		}
@@ -275,7 +279,7 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 	printer::num_test_cases_eval();
 	temp_number = distribution(generator);
 	my_elem = new my_element("Not to be added", temp_number);
-	if(hm->set(my_elem->get_me_hash(),my_elem)) {
+	if(hmg->set(my_elem->get_me_hash(),my_elem)) {
 		printer::debug_std_op_ln("		No!!!.");
 		my_elem_vec->push_back(my_elem);
 	}else{
@@ -286,10 +290,10 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 
 	printer::debug_std_op("==tu	>>	Find my_elem_vec[3]?");
 	printer::num_test_cases_eval();
-	//my_elem = hm->get((*my_elem_vec[4])->get_me_hash());
-	//my_elem = hm->get(my_elem_vec[4]->get_me_hash());
+	//my_elem = hmg->get((*my_elem_vec[4])->get_me_hash());
+	//my_elem = hmg->get(my_elem_vec[4]->get_me_hash());
 //	my_element *my_elem_rhs = (*my_elem_vec)[4];
-	my_elem = hm->get((*my_elem_vec)[4]->get_me_hash());
+	my_elem = hmg->get((*my_elem_vec)[4]->get_me_hash());
 //	if(my_elem->compare_my_element_objects(my_elem_rhs)) {
 	if(my_elem->compare_my_element_objects((*my_elem_vec)[4])) {
 		printer::debug_std_err("				Yes.");
@@ -300,7 +304,7 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 	
 	printer::debug_std_op("==tu	>>	Find my_elem_vec[8]?");
 	printer::num_test_cases_eval();
-	my_elem = hm->get((*my_elem_vec)[8]->get_me_hash());
+	my_elem = hmg->get((*my_elem_vec)[8]->get_me_hash());
 	if(my_elem->compare_my_element_objects((*my_elem_vec)[8])) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
@@ -310,7 +314,7 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 	
 	printer::debug_std_op("==tu	>>	Index of my_elem_vec[5] == 5?");
 	printer::num_test_cases_eval();
-	unsigned long long int index_my_elem = hm->find((*my_elem_vec)[5]->get_me_hash());
+	unsigned long long int index_my_elem = hmg->find((*my_elem_vec)[5]->get_me_hash());
 	if(5 == index_my_elem) {
 		printer::debug_std_err("			Yes.");
 		printer::num_passed_test_cases_eval();
@@ -321,8 +325,8 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 	// Try to delete some my_element objects.
 	printer::debug_std_op("==tu	>>	Delete my_elem_vec[5]?");
 	printer::num_test_cases_eval();
-	my_elem = hm->delete_pair((*my_elem_vec)[5]->get_me_hash());
-	if((my_elem->compare_my_element_objects((*my_elem_vec)[5])) && (ULLONG_MAX == hm->find((*my_elem_vec)[5]->get_me_hash()))) {
+	my_elem = hmg->delete_pair((*my_elem_vec)[5]->get_me_hash());
+	if((my_elem->compare_my_element_objects((*my_elem_vec)[5])) && (ULLONG_MAX == hmg->find((*my_elem_vec)[5]->get_me_hash()))) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -331,8 +335,8 @@ void hash_map_generic_ut::test_hash_map_mutator_functions() {
 	
 	printer::debug_std_op("==tu	>>	Delete my_elem_vec[2]?");
 	printer::num_test_cases_eval();
-	my_elem = hm->delete_pair((*my_elem_vec)[2]->get_me_hash());
-	if((my_elem->compare_my_element_objects((*my_elem_vec)[2])) && (ULLONG_MAX == hm->find((*my_elem_vec)[2]->get_me_hash()))) {
+	my_elem = hmg->delete_pair((*my_elem_vec)[2]->get_me_hash());
+	if((my_elem->compare_my_element_objects((*my_elem_vec)[2])) && (ULLONG_MAX == hmg->find((*my_elem_vec)[2]->get_me_hash()))) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
