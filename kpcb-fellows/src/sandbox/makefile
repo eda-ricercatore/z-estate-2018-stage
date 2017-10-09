@@ -31,7 +31,9 @@ all:
 
 
 
-
+clean:
+	rm -rf *.o
+	rm -rf hash-function
 
 
 
