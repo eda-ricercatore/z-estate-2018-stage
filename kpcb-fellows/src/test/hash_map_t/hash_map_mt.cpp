@@ -68,4 +68,5 @@ void hash_map_mt::test_hash_map_mt() {
 //	printer::set_debugging_mode(false);
 	// Test the class my_element.
 	hash_map_ut::test_hash_map_ut();
+	hash_map_generic_ut::test_hash_map_generic_ut();
 }

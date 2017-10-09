@@ -49,6 +49,11 @@ Design decisions:
 			map is 1.
 	- The function *delete(key)* is renamed as *delete_pair(key)* because the
 		term *delete* is a special keyword in *C++*.
++ Testing the implementation of the fixed-size hash map.
+	- Tested on generic *my_element* objects, which contains two fields: a string;
+		and an interger.
+	- Tested on generic objects, using *C++ templates*.
+
 
 ## Challenges
 
