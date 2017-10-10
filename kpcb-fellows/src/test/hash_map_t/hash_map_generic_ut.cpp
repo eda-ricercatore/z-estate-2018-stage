@@ -76,7 +76,7 @@ void hash_map_generic_ut::test_hash_map_generic_ut() {
  */
 void hash_map_generic_ut::test_hash_map_generic_constructor_and_accessor_functions() {
 	// Check if my_element is instantiated correctly.
-	hash_map_generic<my_element*> *hmg = new hash_map_generic<my_element*>();
+	hash_map_generic<my_element> *hmg = new hash_map_generic<my_element>();
 	
 	printer::debug_std_op("==tu	>>	Default constructor: maximum capacity = 10?");
 	printer::num_test_cases_eval();
@@ -133,7 +133,7 @@ void hash_map_generic_ut::test_hash_map_generic_constructor_and_accessor_functio
 	
 	printer::debug_std_op("==tu	>>	Std constructor's max capacity = 12345001?");
 	unsigned long long int temp_maximum_capacity = 12345001;
-	hmg = new hash_map_generic<my_element*>(temp_maximum_capacity);
+	hmg = new hash_map_generic<my_element>(temp_maximum_capacity);
 	printer::num_test_cases_eval();
 	if(temp_maximum_capacity == hmg->get_maximum_capacity()) {
 		printer::debug_std_op_ln("	Yes.");
@@ -153,7 +153,7 @@ void hash_map_generic_ut::test_hash_map_generic_constructor_and_accessor_functio
 	
 	temp_maximum_capacity = ULLONG_MAX;
 	try{
-		hmg = new hash_map_generic<my_element*>(temp_maximum_capacity);
+		hmg = new hash_map_generic<my_element>(temp_maximum_capacity);
 		printer::debug_std_op_ln("		This should not be printed.");
 	}catch(violated_assertion *err) {
 		printer::debug_std_op("==tu	>>	Std constructor's max capacity < ULLONG_MAX?");
@@ -172,24 +172,26 @@ void hash_map_generic_ut::test_hash_map_generic_constructor_and_accessor_functio
  */
 void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	// Use default constructor to instantiate my_element.
-	hash_map_generic<my_element*> *hmg = new hash_map_generic<my_element*>();
+	hash_map_generic<my_element> *hmg = new hash_map_generic<my_element>();
 	
 	// Vector containing copies of my_element objects.
 //	vector<my_element*> my_elem_vec;
-	vector<my_element*> *my_elem_vec = new vector<my_element*>();
+	vector<my_element> *my_elem_vec = new vector<my_element>();
 	
 	// Create a my_element object.
 	unsigned long long int temp_number = 234237894538;
-	my_element *my_elem = new my_element("Element One", temp_number);
+	//my_element *my_elem = new my_element("Element One", temp_number);
+	my_element my_elem = my_element("Element One", temp_number);
 	// Try to delete this my_element object from the empty hash map.
 //	my_element *resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
-	my_element *resultant_elem;
-	resultant_elem = static_cast<my_element*>(*hmg->delete_pair(my_elem->get_me_hash()));
+	my_element resultant_elem;
+	//resultant_elem = static_cast<my_element>(*);
 //	resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
 //	(**resultant_elem) = hmg->delete_pair(my_elem->get_me_hash());
 	printer::debug_std_op("==tu	>>	Can't delete (key,value) from empty hash map?");
 	printer::num_test_cases_eval();
-	if(NULL == resultant_elem) {
+	//if(NULL == resultant_elem) {
+	if(NULL == hmg->delete_pair(my_elem.get_me_hash())) {
 		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -200,7 +202,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 
 	printer::debug_std_op("==tu	>>	Add my_elem to the empty hash map?");
 	printer::num_test_cases_eval();
-	if(hmg->set(my_elem->get_me_hash(),my_elem)) {
+	if(hmg->set(my_elem.get_me_hash(),my_elem)) {
 		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
 		my_elem_vec->push_back(my_elem);
@@ -247,8 +249,8 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 		//printer::debug_std_op(my_elem_names[i]);
 		//printer::debug_std_op_ln(".");
 		temp_number = distribution(generator);
-		my_elem = new my_element(my_elem_names[i+1], temp_number);
-		if(hmg->set(my_elem->get_me_hash(),my_elem)) {
+		my_elem = my_element(my_elem_names[i+1], temp_number);
+		if(hmg->set(my_elem.get_me_hash(),my_elem)) {
 			printer::debug_std_op_ln("		Yes.");
 			printer::num_passed_test_cases_eval();
 			my_elem_vec->push_back(my_elem);
@@ -278,8 +280,8 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	printer::debug_std_op("==tu	>>	Cannot add another (key,value) pair?");
 	printer::num_test_cases_eval();
 	temp_number = distribution(generator);
-	my_elem = new my_element("Not to be added", temp_number);
-	if(hmg->set(my_elem->get_me_hash(),my_elem)) {
+	my_elem = my_element("Not to be added", temp_number);
+	if(hmg->set(my_elem.get_me_hash(),my_elem)) {
 		printer::debug_std_op_ln("		No!!!.");
 		my_elem_vec->push_back(my_elem);
 	}else{
@@ -293,9 +295,9 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	//my_elem = hmg->get((*my_elem_vec[4])->get_me_hash());
 	//my_elem = hmg->get(my_elem_vec[4]->get_me_hash());
 //	my_element *my_elem_rhs = (*my_elem_vec)[4];
-	my_elem = static_cast<my_element*>(*hmg->get((*my_elem_vec)[4]->get_me_hash()));
+	my_elem = static_cast<my_element>(*hmg->get((*my_elem_vec)[4].get_me_hash()));
 //	if(my_elem->compare_my_element_objects(my_elem_rhs)) {
-	if(my_elem->compare_my_element_objects((*my_elem_vec)[4])) {
+	if(my_elem.compare_my_element_objects((*my_elem_vec)[4])) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -304,8 +306,8 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	
 	printer::debug_std_op("==tu	>>	Find my_elem_vec[8]?");
 	printer::num_test_cases_eval();
-	my_elem = static_cast<my_element*>(*hmg->get((*my_elem_vec)[8]->get_me_hash()));
-	if(my_elem->compare_my_element_objects((*my_elem_vec)[8])) {
+	my_elem = static_cast<my_element>(*hmg->get((*my_elem_vec)[8].get_me_hash()));
+	if(my_elem.compare_my_element_objects((*my_elem_vec)[8])) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -314,7 +316,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	
 	printer::debug_std_op("==tu	>>	Index of my_elem_vec[5] == 5?");
 	printer::num_test_cases_eval();
-	unsigned long long int index_my_elem = hmg->find((*my_elem_vec)[5]->get_me_hash());
+	unsigned long long int index_my_elem = hmg->find((*my_elem_vec)[5].get_me_hash());
 	if(5 == index_my_elem) {
 		printer::debug_std_err("			Yes.");
 		printer::num_passed_test_cases_eval();
@@ -325,8 +327,8 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	// Try to delete some my_element objects.
 	printer::debug_std_op("==tu	>>	Delete my_elem_vec[5]?");
 	printer::num_test_cases_eval();
-	my_elem = static_cast<my_element*>(*hmg->delete_pair((*my_elem_vec)[5]->get_me_hash()));
-	if((my_elem->compare_my_element_objects((*my_elem_vec)[5])) && (ULLONG_MAX == hmg->find((*my_elem_vec)[5]->get_me_hash()))) {
+	my_elem = static_cast<my_element>(*hmg->delete_pair((*my_elem_vec)[5].get_me_hash()));
+	if((my_elem.compare_my_element_objects((*my_elem_vec)[5])) && (ULLONG_MAX == hmg->find((*my_elem_vec)[5].get_me_hash()))) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -335,8 +337,8 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	
 	printer::debug_std_op("==tu	>>	Delete my_elem_vec[2]?");
 	printer::num_test_cases_eval();
-	my_elem = static_cast<my_element*>(*hmg->delete_pair((*my_elem_vec)[2]->get_me_hash()));
-	if((my_elem->compare_my_element_objects((*my_elem_vec)[2])) && (ULLONG_MAX == hmg->find((*my_elem_vec)[2]->get_me_hash()))) {
+	my_elem = static_cast<my_element>(*hmg->delete_pair((*my_elem_vec)[2].get_me_hash()));
+	if((my_elem.compare_my_element_objects((*my_elem_vec)[2])) && (ULLONG_MAX == hmg->find((*my_elem_vec)[2].get_me_hash()))) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -344,7 +346,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	}
 	
 	// Memory cleanup.
-	delete resultant_elem;
+//	delete resultant_elem;
 //	delete my_elem;
 	delete my_elem_vec;
 }

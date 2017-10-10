@@ -110,6 +110,8 @@ class my_element {
 		
 		// Function to compare itself to another my_element object.
 		bool compare_my_element_objects(my_element *obj);
+		// Function to compare itself to another my_element object.
+		bool compare_my_element_objects(my_element obj);
 	
 	// =========================================================
 	

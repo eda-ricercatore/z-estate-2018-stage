@@ -165,3 +165,15 @@ string my_element::get_me_hash() {
 bool my_element::compare_my_element_objects(my_element *obj) {
 	return ((get_name() == obj->get_name()) && (get_index_number() == obj->get_index_number()));
 }
+
+
+/**
+ * Function to compare itself to another my_element object.
+ * @param obj: A my_element to be compared to current my_element
+ *				object.
+ * @return - Boolean TRUE if current my_element object is the same as
+ *				obj. Else, return FALSE. 
+ */
+bool my_element::compare_my_element_objects(my_element obj) {
+	return ((get_name() == obj.get_name()) && (get_index_number() == obj.get_index_number()));
+}

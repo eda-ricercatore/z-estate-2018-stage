@@ -274,4 +274,45 @@ void my_element_ut::test_my_element_comparison_function() {
 		printer::debug_std_op_ln("				Yes.");
 		printer::num_passed_test_cases_eval();
 	}
+	
+	
+	my_element my_elem4 = my_element(t_name,t_index_number);
+	my_element my_elem5 = my_element(t_name,t_index_number);
+	my_element my_elem6 = my_element(temp_str,435433256);
+
+	printer::debug_std_op("==tu	>>	my_elem4 == my_elem5?");
+	printer::num_test_cases_eval();
+	if(my_elem4.compare_my_element_objects(my_elem5)) {
+		printer::debug_std_op_ln("				Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_err("				No.");
+	}
+/*	
+	printer::debug_std_op("==tu	>>	my_elem4 & my_elem5 have different references?");
+	printer::num_test_cases_eval();
+	if(my_elem4 != my_elem5) {
+		printer::debug_std_op_ln("	Yes.");
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_err("	No.");
+	}
+*/
+	printer::debug_std_op("==tu	>>	my_elem4 != my_elem6?");
+	printer::num_test_cases_eval();
+	if(my_elem4.compare_my_element_objects(my_elem6)) {
+		printer::debug_std_err("				No.");
+	}else{
+		printer::debug_std_op_ln("				Yes.");
+		printer::num_passed_test_cases_eval();
+	}
+	
+ 	printer::debug_std_op("==tu	>>	my_elem5 != my_elem6?");
+	printer::num_test_cases_eval();
+	if(my_elem5.compare_my_element_objects(my_elem6)) {
+		printer::debug_std_err("				No.");
+	}else{
+		printer::debug_std_op_ln("				Yes.");
+		printer::num_passed_test_cases_eval();
+	}
 }
