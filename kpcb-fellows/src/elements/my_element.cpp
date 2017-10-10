@@ -52,11 +52,18 @@ my_element::my_element() {
 	index_number = UINT_MAX;
 }
 
-// Standard constructor.
+// Standard constructor #1.
 my_element::my_element(string a_name, int an_index_number) {
 	name = a_name;
 	index_number = an_index_number;
 }
+
+// Standard constructor #2.
+my_element::my_element(my_element *me) {
+	name = me->get_name();
+	index_number = me->get_index_number();
+}
+
 
 
 // -----------------------------------------------------

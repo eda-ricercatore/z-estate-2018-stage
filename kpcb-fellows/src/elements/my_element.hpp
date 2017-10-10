@@ -66,8 +66,10 @@ class my_element {
 	public:
 		// Default constructor.
 		my_element();
-		// Standard constructor.
+		// Standard constructor #1.
 		my_element(string a_name, int an_index_number);
+		// Standard constructor #2.
+		my_element(my_element *me);
 
 		// -----------------------------------------------------
 		

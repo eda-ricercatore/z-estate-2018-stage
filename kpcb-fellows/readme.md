@@ -93,6 +93,11 @@ This repository is organized into the following directories (and subdirectories)
 		Byers Engineering Fellows program.
 
 
+**To compile and run the program, go to the *binaries* directory, and run
+	"*make all*" to build and execute the test cases of my *C++* implementation
+	of a fixed-size hash map.** 
+
+
 
 #	To-Do List
 

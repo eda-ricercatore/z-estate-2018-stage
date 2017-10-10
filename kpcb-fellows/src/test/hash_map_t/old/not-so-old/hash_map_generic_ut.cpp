@@ -64,7 +64,7 @@ void hash_map_generic_ut::test_hash_map_generic_ut() {
 	// Test the constructor.
 	test_hash_map_generic_constructor_and_accessor_functions();
 	// Test mutator functions of the my_element class.
-	test_hash_map_generic_mutator_functions();
+//	test_hash_map_generic_mutator_functions();
 	printer::debug_std_op_ln("");
 }
 
@@ -172,7 +172,7 @@ void hash_map_generic_ut::test_hash_map_generic_constructor_and_accessor_functio
  */
 void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	// Use default constructor to instantiate my_element.
-	hash_map_generic<my_element*> *hmg = new hash_map_generic<my_element*>();
+	hash_map_generic<my_element> *hmg = new hash_map_generic<my_element>();
 	
 	// Vector containing copies of my_element objects.
 //	vector<my_element*> my_elem_vec;
@@ -183,14 +183,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	my_element *my_elem = new my_element("Element One", temp_number);
 	// Try to delete this my_element object from the empty hash map.
 	my_element *resultant_elem;
-	//resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
-	//resultant_elem = (*hmg)->delete_pair(my_elem->get_me_hash());
-	//resultant_elem = (*hmg).delete_pair(my_elem->get_me_hash());
-	//resultant_elem = *((*hmg).delete_pair(my_elem->get_me_hash()));
-	//resultant_elem = *((*hmg)->delete_pair(my_elem->get_me_hash()));
-	//resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
-//	resultant_elem = *((*hmg)->delete_pair(my_elem->get_me_hash()));
-printer::debug_std_op_ln("NULL pointer obtained.");	
+//printer::debug_std_op_ln("NULL pointer obtained.");	
 	//resultant_elem = static_cast<my_element>(*);
 
 	printer::debug_std_op("==tu	>>	Can't delete (key,value) from empty hash map?");
@@ -207,12 +200,14 @@ printer::debug_std_op_ln("NULL pointer obtained.");
 
 	printer::debug_std_op("==tu	>>	Add my_elem to the empty hash map?");
 	printer::num_test_cases_eval();
-	if(hmg->set(my_elem->get_me_hash(),my_elem)) {
+	//if(hmg->set(my_elem->get_me_hash(), new my_element(my_elem))) {
+	//if((*hmg).set(my_elem->get_me_hash(), my_elem)) {
+	if(hmg->set(my_elem->get_me_hash(), my_elem)) {
 		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
 		my_elem_vec->push_back(my_elem);
 	}else{
-		printer::debug_std_err("			NO!!!");
+		printer::debug_std_err("		NO!!!");
 	}
 	
 	printer::debug_std_op("==tu	>>	load() == expected load factor of 0.1?");
@@ -358,4 +353,16 @@ printer::debug_std_op_ln("Can cast to my_element object.");
 //	delete resultant_elem;
 //	delete my_elem;
 	//delete my_elem_vec;
+}
+
+
+
+
+/**
+ * Function to add/remove functions of a my_element object.
+ * @param - None
+ * @return - Nothing
+ */
+void hash_map_generic_ut::test_hash_map_generic_mutator_functions1() {
+	//psm.push_back("");
 }

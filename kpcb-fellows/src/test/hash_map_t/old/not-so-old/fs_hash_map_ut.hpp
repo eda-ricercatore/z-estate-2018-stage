@@ -2,7 +2,7 @@
  * Test/Hash_map_t package:
  * Submodule of Test package to test classes in the Hash_map package.
  *
- * hash_map_generic_ut class:
+ * fs_hash_map_ut class:
  * Class that tests the fixed-size hash map class.
  * The constructors and functions of the hash_map class shall be
  *	tested.
@@ -36,7 +36,7 @@
 // Import Header files from the other modules of the software.
 // Hash_map module
 //#include "../../../hash_map/hash_map.hpp"
-#include "../../hash_map/hash_map_generic.hpp"
+#include "../../hash_map/fs_hash_map.hpp"
 // Elements module
 #include "../../elements/my_element.hpp"
 // Utilities module
@@ -50,14 +50,14 @@
 #include <cmath>		// For comparing floats.
 #include <limits>		// For comparing floats.
 
-#ifndef __HASH_MAP_GENERIC_UT_H
-#define __HASH_MAP_GENERIC_UT_H
+#ifndef __FS_HASH_MAP_UT_H
+#define __FS_HASH_MAP_UT_H
 
 
 
 // ==================================================================
 
-class hash_map_generic_ut {
+class fs_hash_map_ut {
 //	private:
 //		string err_msg;
 
@@ -65,7 +65,7 @@ class hash_map_generic_ut {
 
 	public:
 		// Default constructor.
-		hash_map_generic_ut();
+		fs_hash_map_ut();
 				
 		// ----------------------------------------------------------
 
@@ -73,19 +73,6 @@ class hash_map_generic_ut {
 		 * Function to test the constructors and functions of
 		 *	my_element.
 		 */
-		static void test_hash_map_generic_ut();
-
-		/**
-		 * Function to test the standard constructor of the class
-		 *	hash_map, and its accessor functions.
-		 */
-		static void test_hash_map_generic_constructor_and_accessor_functions();
-
-		/**
-		 * Function to test the mutator functions regarding the
-		 *	the number of items, or (key,value) pairs, of a
-		 *	hash_map object.
-		 */
-		static void test_hash_map_generic_mutator_functions();
+		static void test_fs_hash_map_ut();
 };
 #endif

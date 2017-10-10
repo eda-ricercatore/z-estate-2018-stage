@@ -118,6 +118,21 @@ void my_element_ut::test_my_element_constructor_and_accessor_functions() {
 	}else{
 		printer::debug_std_err("	NO!!!");
 	}
+	
+	my_element *temp_me = new my_element(my_elem);
+	printer::debug_std_op("==tu	>>	2nd Std constructor's index number = 12345001?");
+	printer::num_test_cases_eval();
+	if((temp_me->get_index_number() == my_elem->get_index_number()) &&
+		(0 == (my_elem->get_name()).compare(temp_me->get_name()))) {
+		printer::debug_std_op_ln("	Yes.");
+		printer::num_passed_test_cases_eval();
+		printer::debug_std_op("==tu	>>	2nd Std constructor's name = 'Temporary name'?");
+		printer::debug_std_op_ln("	Yes.");
+		printer::num_test_cases_eval();
+		printer::num_passed_test_cases_eval();
+	}else{
+		printer::debug_std_err("	NO!!!");
+	}
 }
 
 

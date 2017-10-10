@@ -3,7 +3,7 @@
  * Module to contain class definitions and implementations of the
  *	hash map data structure.
  *
- * hash_map_generic class:
+ * fs_hash_map class:
  * Class to imeplement a fixed-size hash map container (i.e., data
  *	structure).
  * Accessor and mutator functions are provided for searching, adding,
@@ -55,27 +55,27 @@
 
 
 
-#ifndef __HASH_MAP_GENERIC_H
-#define __HASH_MAP_GENERIC_H
+#ifndef __FS_HASH_MAP_H
+#define __FS_HASH_MAP_H
 using namespace std;
 
 // =========================================================
 
-// Class definition of the hash_map_generic class
+// Class definition of the fs_hash_map class
 template <typename T>
-class hash_map_generic {
+class fs_hash_map {
 	// Publicly accessible data members, constructors, and functions
 	public:
 		// Default constructor.
-		hash_map_generic();
+		fs_hash_map();
 		/**
 		 * Standard constructor, with its size (maximum capacity)
 		 *	has an input parameter.
 		 */
-		hash_map_generic(unsigned long long int size);
+		fs_hash_map(unsigned long long int size);
 		
 		// Default destructor.
-		~hash_map_generic();
+		~fs_hash_map();
 
 		// -----------------------------------------------------
 		
@@ -116,6 +116,8 @@ class hash_map_generic {
 		 *	the key with the value 'key'.
 		 */
 		T* delete_pair(string key);
+		// Vector to contain pairs of keys/strings and T.
+		vector< pair<string, T*> > fshm;
 	
 	// =========================================================
 	
@@ -134,7 +136,7 @@ class hash_map_generic {
 		// Number of items/pairs in the hash map data structure.
 		unsigned long long int number_of_pairs;
 		
-		vector<pair<string, T*> > psm;
+		
 
 		// -------------------------------------------------------
 		
@@ -172,16 +174,16 @@ class hash_map_generic {
 
 // Default constructor.
 template <typename T>
-hash_map_generic<T>::hash_map_generic() {
+fs_hash_map<T>::fs_hash_map() {
 	/**
 	 * Choose the default size of the fixed-size hash map to be 10,
 	 *	so that it is small enough to be tested exhaustively.
 	 */
 	maximum_capacity = 10;
 	number_of_pairs = 0;
-	psm.resize(maximum_capacity);
+	fshm.resize(maximum_capacity);
 /*
-	if (maximum_capacity != psm.max_size()) {
+	if (maximum_capacity != fshm.max_size()) {
     	printer::debug_std_err("maximum_capacity for default constructor is wrong!!!");
 	}
 */
@@ -197,15 +199,15 @@ hash_map_generic<T>::hash_map_generic() {
  *		full (at maximum capacity).
  */
 template <typename T>
-hash_map_generic<T>::hash_map_generic(unsigned long long int size) {
+fs_hash_map<T>::fs_hash_map(unsigned long long int size) {
 	if(ULLONG_MAX == size) {
 		throw new violated_assertion("size < ULLONG_MAX is required.");
 	}
 	maximum_capacity = size;
 	number_of_pairs = 0;
-	psm.resize(maximum_capacity);
+	fshm.resize(maximum_capacity);
 /*
-	if (maximum_capacity != psm.max_size()) {
+	if (maximum_capacity != fshm.max_size()) {
 		printer::debug_std_err("maximum_capacity for standard constructor is wrong!!!");
 	}
 */
@@ -213,8 +215,8 @@ hash_map_generic<T>::hash_map_generic(unsigned long long int size) {
 
 // Default destructor.
 template <typename T>
-hash_map_generic<T>::~hash_map_generic() {
-	printer::debug_std_op_ln("	Call destructor for hash_map_generic.");
+fs_hash_map<T>::~fs_hash_map() {
+	printer::debug_std_op_ln("	Call destructor for fs_hash_map.");
 }
 
 // -----------------------------------------------------
@@ -231,21 +233,21 @@ hash_map_generic<T>::~hash_map_generic() {
  *	to the key 'key'. Else, return null.
  */
 template <typename T>
-T* hash_map_generic<T>::get(string key) {
+T* fs_hash_map<T>::get(string key) {
 	/**
 	 * For each (key,value) pair in the array implementation of a
 	 *	hash map...
 	 */
 //	for(unsigned long long int i=0; i<maximum_capacity; i++) {
 		// Is its key equal to the search key 'key'?
-//		if(0 == (psm[i].first).compare(key)) {
+//		if(0 == (fshm[i].first).compare(key)) {
 			/**
 			 * Yes. (key,value) pair is found in the hash map.
 			 * Return the 'value' for this (key,value) pair.
 			 */
 /*
 		 	T *temp;
-		 	temp = psm[i].second; 
+		 	temp = fshm[i].second; 
 		 	return temp;
 		}
 	}
@@ -260,7 +262,7 @@ T* hash_map_generic<T>::get(string key) {
  * @return - Load factor of the fixed-size hash map.
  */
 template <typename T>
-float hash_map_generic<T>::load() {
+float fs_hash_map<T>::load() {
 	// Return the load factor of the fixed-size hash map.
 	return static_cast<float>(get_number_of_pairs())/(static_cast<float>(get_maximum_capacity()));
 }
@@ -273,20 +275,20 @@ float hash_map_generic<T>::load() {
  *	 
  */
 template <typename T>
-unsigned long long int hash_map_generic<T>::find(string key) {
+unsigned long long int fs_hash_map<T>::find(string key) {
 	/**
 	 * For each (key,value) pair in the array implementation of a
 	 *	hash map...
 	 */
-/*
+
 	for(unsigned long long int i=0; i<maximum_capacity; i++) {
 		// Is its key equal to the search key 'key'?
-		if(0 == (psm[i].first).compare(key)) {
+		if(0 == (fshm[i].first).compare(key)) {
 			// Yes. Return current index in the array.
 			return i;
 		}
 	}
-*/
+
 	// The key 'key' cannot be found in the array.
 	return ULLONG_MAX;
 }
@@ -302,7 +304,7 @@ unsigned long long int hash_map_generic<T>::find(string key) {
  * @assertion - (number_of_pairs <= maximum_capacity) must be true.
  */
 template <typename T>
-unsigned long long int hash_map_generic<T>::get_number_of_pairs() {
+unsigned long long int fs_hash_map<T>::get_number_of_pairs() {
 	if (number_of_pairs > maximum_capacity) {
 		throw new violated_assertion("Maximum capacity exceeded.");
 	}
@@ -318,7 +320,7 @@ unsigned long long int hash_map_generic<T>::get_number_of_pairs() {
  * @assertion - (number_of_pairs <= maximum_capacity) must be true.
  */
 template <typename T>
-unsigned long long int hash_map_generic<T>::get_maximum_capacity() {
+unsigned long long int fs_hash_map<T>::get_maximum_capacity() {
 	if (number_of_pairs > maximum_capacity) {
 		throw new violated_assertion("number_of_pairs > maximum_capacity. Accessor.");
 	}
@@ -340,49 +342,49 @@ unsigned long long int hash_map_generic<T>::get_maximum_capacity() {
  *	hash map. Else, return false.
  */
 template <typename T>
-bool hash_map_generic<T>::set(string key, T value) {
+bool fs_hash_map<T>::set(string key, T value) {
 
-//	if (number_of_pairs < maximum_capacity) {
+	if (number_of_pairs < maximum_capacity) {
 		/**
 		 * For each (key,value) pair in the array implementation of
 		 *	a hash map...
 		 */
-//printer::debug_std_op_ln("Not at max capacity.");
+printer::debug_std_op_ln("Not at max capacity.");
 
-//		for(unsigned long long int i=0; i<maximum_capacity; i++) {
+		for(unsigned long long int i=0; i<maximum_capacity; i++) {
 			// Is its key equal to the search key 'key'?
-//			if(0 == (psm[i].first).compare(key)) {
+			if(0 == (key).compare(fshm[i].first)) {
 				/**
 				 * Yes. (key,value) pair already exists in the
 				 *	hash map.
 				 * (key,value) pair can't be added to the hash map
 				 *	again.
 				 */
-//printer::debug_std_op_ln("(key,value) pair exists in the hash map.");
-//				return false;
+printer::debug_std_op_ln("(key,value) pair exists in the hash map.");
+				return false;
 			/**
 			 * Else if the key of the pair at the current index is
 			 *	an empty string...
 			 */
-//			}else if("" == (psm[i].first)) {
+			}else if("" == (fshm[i].first)) {
 				/**
 				 * An empty space exists in the fixed-size hash map.
 				 * Add the (key,value) pair to the hash map in this
 				 *	empty space. 
 				 */
-/*
-//printer::debug_std_op_ln("Index in array hash map is available.");
-				psm[i].first = key;
+printer::debug_std_op_ln("Index in array hash map is available.");
+				fshm[i].first = key;
 //printer::debug_std_op_ln("Key assigned. Assigning value.");
-				psm[i].second = value;
+				(*fshm[i].second) = value;
 				increment_number_of_pairs();
-//printer::debug_std_op_ln("(key,value) pair has been added.");
+				//fshm->push_back(make_pair(key,value));
+//				fshm.push_back(make_pair(key,value));
+printer::debug_std_op_ln("(key,value) pair has been added.");
 				return true;
 			}
 		}	// Fixed-size hash map is full (at maximum capacity).
 	}
-*/
-//printer::debug_std_op_ln("No (key,value) pair added.");
+printer::debug_std_op_ln("No (key,value) pair added.");
 	// Fixed-size hash map is full (at maximum capacity).
 	return false;
 }
@@ -401,32 +403,36 @@ bool hash_map_generic<T>::set(string key, T value) {
  *	return the value 'value' of (key,value) pair. Else, return null.
  */
 template <typename T>
-T* hash_map_generic<T>::delete_pair(string key) {
+T* fs_hash_map<T>::delete_pair(string key) {
 	/**
 	 * For each (key,value) pair in the array implementation of
 	 *	a hash map...
 	 */
-	for(unsigned long long int i=0; i<maximum_capacity; i++) {
+//	for(unsigned long long int i=0; i<maximum_capacity; i++) {
 		// Is its key equal to the search key 'key'?
+/*
 printer::debug_std_op("Element found:");
 printer::debug_std_op_ln(to_string(i));
-		if(0 == (key).compare(psm[i].first)) {
+*/
+//		if(0 == (key).compare(fshm[i].first)) {
 			/**
 			 * Yes. (key,value) pair is found in the hash map.
 			 * Temporary store 'value', and delete the pair from the
 			 *	hash map.
 			 */
-printer::debug_std_op_ln("(key,value) pair found.");
+//printer::debug_std_op_ln("(key,value) pair found.");
+/*
 		 	T *temp_elem;
-		 	temp_elem = psm[i].second;
+		 	temp_elem = fshm[i].second;
 		 	// Set the key of the (key,value) pair to an empty string.
-			psm[i].first = "";
-			delete psm[i].second;
+			fshm[i].first = "";
+			delete fshm[i].second;
 			// Can't delete the element, since it isn't a pointer.
 			return temp_elem;
 		}
 	}
-printer::debug_std_op_ln("(key,value) pair NOT found.");
+*/
+//printer::debug_std_op_ln("(key,value) pair NOT found.");
 	// (key,value) pair is not found in the hash map.
 	return NULL;
 }
@@ -450,7 +456,7 @@ printer::debug_std_op_ln("(key,value) pair NOT found.");
  *	been exceeded.
  */
 template <typename T>
-void hash_map_generic<T>::increment_number_of_pairs() {
+void fs_hash_map<T>::increment_number_of_pairs() {
 	// Is there any empty space in the fied-size hash map?
 	if (number_of_pairs < maximum_capacity) {
 		// Yes.
@@ -464,3 +470,4 @@ void hash_map_generic<T>::increment_number_of_pairs() {
 		throw new violated_postcondition("number_of_pairs > maximum_capacity. Mutator.");
 	}
 }
+
