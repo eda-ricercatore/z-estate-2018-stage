@@ -42,6 +42,8 @@
 #include "../utilities/violated_precondition.hpp"
 #include "../utilities/violated_postcondition.hpp"
 #include "../utilities/printer.hpp"
+// Elements package/module.
+//#include "../elements/my_element.hpp"
 
 // Import packages from the C++ STL
 #include <iostream>
@@ -58,6 +60,13 @@
 #ifndef __HASH_MAP_GENERIC_H
 #define __HASH_MAP_GENERIC_H
 using namespace std;
+
+// =========================================================
+
+/**
+ * Shortcut to a dynamic array of (key, value) pairs.
+ */
+//typedef pair<string, T*> *pair_str_t;
 
 // =========================================================
 
@@ -134,6 +143,10 @@ class hash_map_generic {
 		// Number of items/pairs in the hash map data structure.
 		unsigned long long int number_of_pairs;
 		
+		// Array of pair_str_t, pair<string, my_element>.
+		//pair_str_t psm;
+		//pair<string, T*> *psm;
+		//pair<string, T> psm[10];
 		vector<pair<string, T*> > psm;
 
 		// -------------------------------------------------------
@@ -179,10 +192,9 @@ hash_map_generic<T>::hash_map_generic() {
 	 */
 	maximum_capacity = 10;
 	number_of_pairs = 0;
-	psm.resize(maximum_capacity);
-	if (maximum_capacity != psm.max_size()) {
-    	printer::debug_std_err("maximum_capacity for default constructor is wrong!!!");
-	}
+	//psm = new pair<string, T*>[maximum_capacity];
+	//psm = new pair<string, T*>[maximum_capacity];
+	//pair_str_myelement psm[maximum_capacity];
 }
 
 
@@ -201,11 +213,12 @@ hash_map_generic<T>::hash_map_generic(unsigned long long int size) {
 	}
 	maximum_capacity = size;
 	number_of_pairs = 0;
-	psm.resize(maximum_capacity);
-	if (maximum_capacity != psm.max_size()) {
-		printer::debug_std_err("maximum_capacity for standard constructor is wrong!!!");
-	}
+	//psm = new pair<string, T*>[maximum_capacity];
+	psm = vector<pair<string, T*> >(maximum_capacity);
+	//pair_str_myelement = new pair<string, my_element>[maximum_capacity];
+	//pair_str_myelement = pair<string, my_element>[maximum_capacity];
 }
+
 
 // Default destructor.
 template <typename T>
@@ -232,20 +245,19 @@ T* hash_map_generic<T>::get(string key) {
 	 * For each (key,value) pair in the array implementation of a
 	 *	hash map...
 	 */
-//	for(unsigned long long int i=0; i<maximum_capacity; i++) {
+	for(unsigned long long int i=0; i<maximum_capacity; i++) {
 		// Is its key equal to the search key 'key'?
-//		if(0 == (psm[i].first).compare(key)) {
+		if(0 == (psm[i].first).compare(key)) {
 			/**
 			 * Yes. (key,value) pair is found in the hash map.
 			 * Return the 'value' for this (key,value) pair.
 			 */
-/*
 		 	T *temp;
+		 	//(*temp) = psm[i].second;
 		 	temp = psm[i].second; 
 		 	return temp;
 		}
 	}
-*/
 	// 'key' can be found in the fixed-size hash map.
 	return NULL;
 }
@@ -274,7 +286,6 @@ unsigned long long int hash_map_generic<T>::find(string key) {
 	 * For each (key,value) pair in the array implementation of a
 	 *	hash map...
 	 */
-/*
 	for(unsigned long long int i=0; i<maximum_capacity; i++) {
 		// Is its key equal to the search key 'key'?
 		if(0 == (psm[i].first).compare(key)) {
@@ -282,7 +293,6 @@ unsigned long long int hash_map_generic<T>::find(string key) {
 			return i;
 		}
 	}
-*/
 	// The key 'key' cannot be found in the array.
 	return ULLONG_MAX;
 }
@@ -337,17 +347,15 @@ unsigned long long int hash_map_generic<T>::get_maximum_capacity() {
  */
 template <typename T>
 bool hash_map_generic<T>::set(string key, T *value) {
-
-//	if (number_of_pairs < maximum_capacity) {
+	if (number_of_pairs < maximum_capacity) {
 		/**
 		 * For each (key,value) pair in the array implementation of
 		 *	a hash map...
 		 */
 //printer::debug_std_op_ln("Not at max capacity.");
-
-//		for(unsigned long long int i=0; i<maximum_capacity; i++) {
+		for(unsigned long long int i=0; i<maximum_capacity; i++) {
 			// Is its key equal to the search key 'key'?
-//			if(0 == (psm[i].first).compare(key)) {
+			if(0 == (psm[i].first).compare(key)) {
 				/**
 				 * Yes. (key,value) pair already exists in the
 				 *	hash map.
@@ -355,21 +363,21 @@ bool hash_map_generic<T>::set(string key, T *value) {
 				 *	again.
 				 */
 //printer::debug_std_op_ln("(key,value) pair exists in the hash map.");
-//				return false;
+				return false;
 			/**
 			 * Else if the key of the pair at the current index is
 			 *	an empty string...
 			 */
-//			}else if("" == (psm[i].first)) {
+			}else if("" == (psm[i].first)) {
 				/**
 				 * An empty space exists in the fixed-size hash map.
 				 * Add the (key,value) pair to the hash map in this
 				 *	empty space. 
 				 */
-/*
 //printer::debug_std_op_ln("Index in array hash map is available.");
 				psm[i].first = key;
 //printer::debug_std_op_ln("Key assigned. Assigning value.");
+				//(*psm[i].second) = value;
 				psm[i].second = value;
 				increment_number_of_pairs();
 //printer::debug_std_op_ln("(key,value) pair has been added.");
@@ -377,7 +385,6 @@ bool hash_map_generic<T>::set(string key, T *value) {
 			}
 		}	// Fixed-size hash map is full (at maximum capacity).
 	}
-*/
 //printer::debug_std_op_ln("No (key,value) pair added.");
 	// Fixed-size hash map is full (at maximum capacity).
 	return false;
@@ -402,25 +409,26 @@ T* hash_map_generic<T>::delete_pair(string key) {
 	 * For each (key,value) pair in the array implementation of
 	 *	a hash map...
 	 */
-//	for(unsigned long long int i=0; i<maximum_capacity; i++) {
+	for(unsigned long long int i=0; i<maximum_capacity; i++) {
 		// Is its key equal to the search key 'key'?
-//		if(0 == (psm[i].first).compare(key)) {
+		if(0 == (psm[i].first).compare(key)) {
 			/**
 			 * Yes. (key,value) pair is found in the hash map.
 			 * Temporary store 'value', and delete the pair from the
 			 *	hash map.
 			 */
-/*
 		 	T *temp_elem;
+		 	//(*temp_elem) = (*psm)[i].second;
+		 	//temp_elem = (*psm[i])->second;
 		 	temp_elem = psm[i].second;
 		 	// Set the key of the (key,value) pair to an empty string.
 			psm[i].first = "";
-			delete psm[i].second;
+			//psm[i].second = NULL;
+			//delete psm[i].second;
 			// Can't delete the element, since it isn't a pointer.
 			return temp_elem;
 		}
 	}
-*/
 	// (key,value) pair is not found in the hash map.
 	return NULL;
 }
