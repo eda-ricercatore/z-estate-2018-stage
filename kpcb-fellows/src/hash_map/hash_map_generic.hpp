@@ -109,7 +109,7 @@ class hash_map_generic {
 		// Mutator functions.
 		
 		// Function to add the pair (key, value) to the hash map.
-		bool set(string key, T *value);
+		bool set(string key, T value);
 		
 		/**
 		 * Function to delete the (key,value) pair associated with
@@ -180,9 +180,11 @@ hash_map_generic<T>::hash_map_generic() {
 	maximum_capacity = 10;
 	number_of_pairs = 0;
 	psm.resize(maximum_capacity);
+/*
 	if (maximum_capacity != psm.max_size()) {
     	printer::debug_std_err("maximum_capacity for default constructor is wrong!!!");
 	}
+*/
 }
 
 
@@ -202,9 +204,11 @@ hash_map_generic<T>::hash_map_generic(unsigned long long int size) {
 	maximum_capacity = size;
 	number_of_pairs = 0;
 	psm.resize(maximum_capacity);
+/*
 	if (maximum_capacity != psm.max_size()) {
 		printer::debug_std_err("maximum_capacity for standard constructor is wrong!!!");
 	}
+*/
 }
 
 // Default destructor.
@@ -336,7 +340,7 @@ unsigned long long int hash_map_generic<T>::get_maximum_capacity() {
  *	hash map. Else, return false.
  */
 template <typename T>
-bool hash_map_generic<T>::set(string key, T *value) {
+bool hash_map_generic<T>::set(string key, T value) {
 
 //	if (number_of_pairs < maximum_capacity) {
 		/**
@@ -402,15 +406,17 @@ T* hash_map_generic<T>::delete_pair(string key) {
 	 * For each (key,value) pair in the array implementation of
 	 *	a hash map...
 	 */
-//	for(unsigned long long int i=0; i<maximum_capacity; i++) {
+	for(unsigned long long int i=0; i<maximum_capacity; i++) {
 		// Is its key equal to the search key 'key'?
-//		if(0 == (psm[i].first).compare(key)) {
+printer::debug_std_op("Element found:");
+printer::debug_std_op_ln(to_string(i));
+		if(0 == (key).compare(psm[i].first)) {
 			/**
 			 * Yes. (key,value) pair is found in the hash map.
 			 * Temporary store 'value', and delete the pair from the
 			 *	hash map.
 			 */
-/*
+printer::debug_std_op_ln("(key,value) pair found.");
 		 	T *temp_elem;
 		 	temp_elem = psm[i].second;
 		 	// Set the key of the (key,value) pair to an empty string.
@@ -420,7 +426,7 @@ T* hash_map_generic<T>::delete_pair(string key) {
 			return temp_elem;
 		}
 	}
-*/
+printer::debug_std_op_ln("(key,value) pair NOT found.");
 	// (key,value) pair is not found in the hash map.
 	return NULL;
 }

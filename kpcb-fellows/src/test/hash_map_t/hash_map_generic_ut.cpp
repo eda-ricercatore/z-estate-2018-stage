@@ -172,7 +172,7 @@ void hash_map_generic_ut::test_hash_map_generic_constructor_and_accessor_functio
  */
 void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	// Use default constructor to instantiate my_element.
-/*	hash_map_generic<my_element*> *hmg = new hash_map_generic<my_element*>();
+	hash_map_generic<my_element*> *hmg = new hash_map_generic<my_element*>();
 	
 	// Vector containing copies of my_element objects.
 //	vector<my_element*> my_elem_vec;
@@ -186,11 +186,17 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	//resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
 	//resultant_elem = (*hmg)->delete_pair(my_elem->get_me_hash());
 	//resultant_elem = (*hmg).delete_pair(my_elem->get_me_hash());
-	resultant_elem = *((*hmg).delete_pair(my_elem->get_me_hash()));
+	//resultant_elem = *((*hmg).delete_pair(my_elem->get_me_hash()));
+	//resultant_elem = *((*hmg)->delete_pair(my_elem->get_me_hash()));
+	//resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
+//	resultant_elem = *((*hmg)->delete_pair(my_elem->get_me_hash()));
+printer::debug_std_op_ln("NULL pointer obtained.");	
 	//resultant_elem = static_cast<my_element>(*);
+
 	printer::debug_std_op("==tu	>>	Can't delete (key,value) from empty hash map?");
 	printer::num_test_cases_eval();
-	if(NULL == hmg->delete_pair(my_elem->get_me_hash())) {
+	//if(NULL == hmg->delete_pair(my_elem->get_me_hash())) {
+	if(NULL == (*hmg).delete_pair(my_elem->get_me_hash())) {
 		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -221,7 +227,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 		printer::debug_std_err(to_string(hmg->get_maximum_capacity()));
 		printer::debug_std_err(to_string(hmg->load()));
 	}
-*/
+
 //	printer::debug_std_op_ln("Generate a random number.");
 
 	// Container of names for my_elements to be added to the hash map.
