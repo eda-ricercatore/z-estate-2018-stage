@@ -71,7 +71,7 @@ using namespace std;
 // =========================================================
 
 // Class definition of the hash_map_generic class
-template <class T>
+template <typename T>
 class hash_map_generic {
 	// Publicly accessible data members, constructors, and functions
 	public:
@@ -118,7 +118,7 @@ class hash_map_generic {
 		// Mutator functions.
 		
 		// Function to add the pair (key, value) to the hash map.
-		bool set(string key, T *value);
+		bool set(string key, T value);
 		
 		/**
 		 * Function to delete the (key,value) pair associated with

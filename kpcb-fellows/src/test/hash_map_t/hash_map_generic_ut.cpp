@@ -293,7 +293,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	//my_elem = hmg->get((*my_elem_vec[4])->get_me_hash());
 	//my_elem = hmg->get(my_elem_vec[4]->get_me_hash());
 //	my_element *my_elem_rhs = (*my_elem_vec)[4];
-	my_elem = hmg->get((*my_elem_vec)[4]->get_me_hash());
+	my_elem = static_cast<my_element*>(*hmg->get((*my_elem_vec)[4]->get_me_hash()));
 //	if(my_elem->compare_my_element_objects(my_elem_rhs)) {
 	if(my_elem->compare_my_element_objects((*my_elem_vec)[4])) {
 		printer::debug_std_err("				Yes.");
@@ -304,7 +304,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	
 	printer::debug_std_op("==tu	>>	Find my_elem_vec[8]?");
 	printer::num_test_cases_eval();
-	my_elem = hmg->get((*my_elem_vec)[8]->get_me_hash());
+	my_elem = static_cast<my_element*>(*hmg->get((*my_elem_vec)[8]->get_me_hash()));
 	if(my_elem->compare_my_element_objects((*my_elem_vec)[8])) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
@@ -325,7 +325,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	// Try to delete some my_element objects.
 	printer::debug_std_op("==tu	>>	Delete my_elem_vec[5]?");
 	printer::num_test_cases_eval();
-	my_elem = hmg->delete_pair((*my_elem_vec)[5]->get_me_hash());
+	my_elem = static_cast<my_element*>(*hmg->delete_pair((*my_elem_vec)[5]->get_me_hash()));
 	if((my_elem->compare_my_element_objects((*my_elem_vec)[5])) && (ULLONG_MAX == hmg->find((*my_elem_vec)[5]->get_me_hash()))) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
@@ -335,7 +335,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	
 	printer::debug_std_op("==tu	>>	Delete my_elem_vec[2]?");
 	printer::num_test_cases_eval();
-	my_elem = hmg->delete_pair((*my_elem_vec)[2]->get_me_hash());
+	my_elem = static_cast<my_element*>(*hmg->delete_pair((*my_elem_vec)[2]->get_me_hash()));
 	if((my_elem->compare_my_element_objects((*my_elem_vec)[2])) && (ULLONG_MAX == hmg->find((*my_elem_vec)[2]->get_me_hash()))) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
