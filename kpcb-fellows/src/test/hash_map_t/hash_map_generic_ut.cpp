@@ -60,7 +60,7 @@ hash_map_generic_ut::hash_map_generic_ut() {
  * @return - Nothing.
  */
 void hash_map_generic_ut::test_hash_map_generic_ut() {
-	printer::debug_std_op_ln("==tu	Testing: hash_map...");
+	printer::debug_std_op_ln("==tu	Testing: hash_map_generic...");
 	// Test the constructor.
 	test_hash_map_generic_constructor_and_accessor_functions();
 	// Test mutator functions of the my_element class.
@@ -172,26 +172,32 @@ void hash_map_generic_ut::test_hash_map_generic_constructor_and_accessor_functio
  */
 void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	// Use default constructor to instantiate my_element.
-	hash_map_generic<my_element> *hmg = new hash_map_generic<my_element>();
+	hash_map_generic<my_element*> *hmg = new hash_map_generic<my_element*>();
 	
 	// Vector containing copies of my_element objects.
 //	vector<my_element*> my_elem_vec;
-	vector<my_element> *my_elem_vec = new vector<my_element>();
+	vector<my_element*> *my_elem_vec = new vector<my_element*>();
 	
 	// Create a my_element object.
 	unsigned long long int temp_number = 234237894538;
-	//my_element *my_elem = new my_element("Element One", temp_number);
-	my_element my_elem = my_element("Element One", temp_number);
+	my_element *my_elem = new my_element("Element One", temp_number);
+	//my_element my_elem = my_element("Element One", temp_number);
 	// Try to delete this my_element object from the empty hash map.
 //	my_element *resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
-	my_element resultant_elem;
+	my_element *resultant_elem;
+	//resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
+	//resultant_elem = (*hmg)->delete_pair(my_elem->get_me_hash());
+	resultant_elem = *((*hmg).delete_pair(my_elem->get_me_hash()));
+//	my_element resultant_elem;
 	//resultant_elem = static_cast<my_element>(*);
 //	resultant_elem = hmg->delete_pair(my_elem->get_me_hash());
 //	(**resultant_elem) = hmg->delete_pair(my_elem->get_me_hash());
 	printer::debug_std_op("==tu	>>	Can't delete (key,value) from empty hash map?");
 	printer::num_test_cases_eval();
 	//if(NULL == resultant_elem) {
-	if(NULL == hmg->delete_pair(my_elem.get_me_hash())) {
+	//if(NULL == hmg->delete_pair(my_elem.get_me_hash())) {
+	//if(nullptr == hmg->delete_pair(my_elem.get_me_hash())) {
+	if(NULL == hmg->delete_pair(my_elem->get_me_hash())) {
 		printer::debug_std_op_ln("	Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
@@ -202,7 +208,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 
 	printer::debug_std_op("==tu	>>	Add my_elem to the empty hash map?");
 	printer::num_test_cases_eval();
-	if(hmg->set(my_elem.get_me_hash(),my_elem)) {
+	if(hmg->set(my_elem->get_me_hash(),my_elem)) {
 		printer::debug_std_op_ln("		Yes.");
 		printer::num_passed_test_cases_eval();
 		my_elem_vec->push_back(my_elem);
@@ -290,20 +296,36 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	}
 	// Try to find some my_element objects.
 
+printer::debug_std_op_ln("Try to find some my_element objects.");
 	printer::debug_std_op("==tu	>>	Find my_elem_vec[3]?");
 	printer::num_test_cases_eval();
-	//my_elem = hmg->get((*my_elem_vec[4])->get_me_hash());
-	//my_elem = hmg->get(my_elem_vec[4]->get_me_hash());
-//	my_element *my_elem_rhs = (*my_elem_vec)[4];
-	my_elem = static_cast<my_element>(*hmg->get((*my_elem_vec)[4].get_me_hash()));
+	//my_elem = hmg->get((*my_elem_vec[3])->get_me_hash());
+	//my_elem = hmg->get(my_elem_vec[3]->get_me_hash());
+//	my_element *my_elem_rhs = (*my_elem_vec)[3];
+//	my_elem = static_cast<my_element>(*hmg->get((*my_elem_vec)[3].get_me_hash()));
+	//my_elem = hmg->get((*my_elem_vec)[3].get_me_hash());
+	//my_elem = *(hmg->get((*my_elem_vec)[3].get_me_hash()));
+	//my_elem = (my_element)(hmg->get((*my_elem_vec)[3].get_me_hash()));
+	//my_elem = static_cast<my_element>(*hmg->get((*my_elem_vec)[3].get_me_hash()));
+printer::debug_std_op_ln((*my_elem_vec)[3].get_me_hash());
+	//my_elem = (*hmg)->get((*my_elem_vec)[3].get_me_hash());
+	//my_elem = *(hmg->get((*my_elem_vec)[3].get_me_hash()));
+	if(NULL == hmg->get((*my_elem_vec)[3].get_me_hash())) {
+		cout<<"	Null pointer found."<<endl;
+	}else{
+		cout<<"	Not a null pointer."<<endl;
+	}
+printer::debug_std_op_ln("my_elem works.");
+	my_elem = static_cast<my_element>(*hmg->get((*my_elem_vec)[3].get_me_hash()));
+printer::debug_std_op_ln("Can cast to my_element object.");
 //	if(my_elem->compare_my_element_objects(my_elem_rhs)) {
-	if(my_elem.compare_my_element_objects((*my_elem_vec)[4])) {
+	if(my_elem.compare_my_element_objects((*my_elem_vec)[3])) {
 		printer::debug_std_err("				Yes.");
 		printer::num_passed_test_cases_eval();
 	}else{
 		printer::debug_std_op_ln("				No!!!.");
 	}
-	
+/*
 	printer::debug_std_op("==tu	>>	Find my_elem_vec[8]?");
 	printer::num_test_cases_eval();
 	my_elem = static_cast<my_element>(*hmg->get((*my_elem_vec)[8].get_me_hash()));
@@ -314,6 +336,7 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 		printer::debug_std_op_ln("				No!!!.");
 	}
 	
+*/
 	printer::debug_std_op("==tu	>>	Index of my_elem_vec[5] == 5?");
 	printer::num_test_cases_eval();
 	unsigned long long int index_my_elem = hmg->find((*my_elem_vec)[5].get_me_hash());
@@ -323,7 +346,8 @@ void hash_map_generic_ut::test_hash_map_generic_mutator_functions() {
 	}else{
 		printer::debug_std_op_ln("			No!!!.");
 	}
-	
+
+
 	// Try to delete some my_element objects.
 	printer::debug_std_op("==tu	>>	Delete my_elem_vec[5]?");
 	printer::num_test_cases_eval();
